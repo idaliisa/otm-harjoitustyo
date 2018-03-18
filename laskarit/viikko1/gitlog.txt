@@ -1,0 +1,121 @@
+commit a11da185d4d828461fa02c1e52863e9387108e85
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Sun Mar 18 23:52:04 2018 +0200
+
+    file1 poistettu
+
+ tiedostoja/file1 | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 67fdb04c8e50a3273c2f54020c1ecbcd76e82161
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Sun Mar 18 23:50:46 2018 +0200
+
+    file2 -> file22, uudelleennimetty
+
+ tiedostoja/{file2 => file22} | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit d9a0d86c4b7f44c499fd12d7e970d19700a4d6e0
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Sun Mar 18 23:25:54 2018 +0200
+
+    file1-3 lisätty kansioon tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 3c9463611a8261cdc614df46882c9ae3ad02df70
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Sun Mar 18 23:14:10 2018 +0200
+
+    eka.txt, kolmas.txt; tekstiä poistettu ja lisätty
+
+ eka.txt    | 3 +--
+ kolmas.txt | 2 +-
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
+commit acac9817af54f37d364fbbc1ca5994c0389a1d91
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Sun Mar 18 23:08:14 2018 +0200
+
+    tiedosto.txt -> eka.txt, uudelleennimetty
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0aec7bbfe46c2c5a9e5e07080cd85eb3785c37c0
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Sun Mar 18 23:04:28 2018 +0200
+
+    toinen.txt poistettu
+
+ toinen.txt | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit 2b7a205e2fec5c582ba340dbc5e018985f22ce92
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Sun Mar 18 22:54:54 2018 +0200
+
+    tiedosto.txt, osa tekstistä poistettu ja lisätty uutta
+
+ tiedosto.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 13b0e5df6f2208646becac677dcf5d8f5cf730ab
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Sun Mar 18 22:52:26 2018 +0200
+
+    tiedosto.txt, lisätty paljon tekstiä
+
+ tiedosto.txt | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+commit ff2e8b9cb672401359f3dc626934d92249dfdcc3
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Thu Mar 15 23:25:38 2018 +0200
+
+    luotu kansio stuff ja sinne testi.txt
+
+ stuff/testi.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1afdd629b179651193430018b3571010a752e603
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Thu Mar 15 23:23:04 2018 +0200
+
+    muokattu toista ja kolmatta tiedostoa
+
+ kolmas.txt | 3 +++
+ toinen.txt | 3 +++
+ 2 files changed, 6 insertions(+)
+
+commit b79e34cfb7db07504ba2a6c229344a42886fa3c7
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Thu Mar 15 23:20:36 2018 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit d582d0cb30ea5aa9d35d82f3ecf9dafdca370da4
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Thu Mar 15 23:15:53 2018 +0200
+
+    tiedoston muutos ja toisen lisäys
+
+ tiedosto.txt | 2 ++
+ toinen.txt   | 0
+ 2 files changed, 2 insertions(+)
+
+commit 189e51471b3f1f2cc1d0872655c74d755ca64149
+Author: idaliisa <idaliisa@gmail.com>
+Date:   Thu Mar 15 23:09:22 2018 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
