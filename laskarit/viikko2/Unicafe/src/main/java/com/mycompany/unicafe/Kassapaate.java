@@ -51,12 +51,13 @@ public class Kassapaate {
         }
     }
 
-    public void lataaRahaaKortille(Maksukortti kortti, int summa) {
+    public boolean lataaRahaaKortille(Maksukortti kortti, int summa) {
         if (summa >= 0) {
             kortti.lataaRahaa(summa);
             this.kassassaRahaa += summa;
+            return true;
         } else {
-            return;
+            return false;
         }
     }
 
