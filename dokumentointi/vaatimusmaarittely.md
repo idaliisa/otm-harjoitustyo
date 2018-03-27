@@ -7,7 +7,7 @@ Sovelluksella on vain yksi käyttäjärooli eli pelaaja.
 ### Ennen kirjautumista
 - Käyttäjä voi luoda käyttäjätunnuksen. Käyttäjätunnuksen on oltava uniikki ja vähintään viisi merkkiä pitkä.
 - Käyttäjä voi kirjautua järjestelmään. Järjestelmä ilmoittaa, mikäli käyttäjätunnusta ei ole luotu.
-###Kirjautumisen jälkeen
+### Kirjautumisen jälkeen
 - Käyttäjä voi aloittaa pelin.
 - Käyttäjä voi ohjata putoavaa palikkaa nuolinäppäimillä sivuttain, kunnes palikka saavuttaa alareunan tai aiemmin pudotetun palikan. Sitten käyttäjä saa ohjattavakseen uuden palikan. Käyttäjällä on aina yksi palikka ohjattavana. Ohjaaminen rajoittuu pelikehyksen sisälle.
 - Käyttäjä voi kääntää palikkaa 90 astetta painamalla enteriä, kunnes palikka saavuttaa alareunan tai aiemmin pudotetun palikan. Pelissä on eri muotoisia palikoita ja vuorossa oleva palikka määräytyy arpomalla.
