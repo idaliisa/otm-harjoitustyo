@@ -1,6 +1,8 @@
 # Vaatimusmäärittely
 ## Sovelluksen tarkoitus
+Sovelluksella voi pelata Tetristä.
 ## Käyttäjät
+Sovelluksella on vain yksi käyttäjärooli eli pelaaja.
 ## Suunnitellut toiminnallisuudet
 ### Ennen kirjautumista
 - Käyttäjä voi luoda käyttäjätunnuksen. Käyttäjätunnuksen on oltava uniikki ja vähintään viisi merkkiä pitkä.
