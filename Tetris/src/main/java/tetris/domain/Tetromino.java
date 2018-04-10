@@ -4,6 +4,7 @@ package tetris.domain;
 
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 
@@ -28,17 +29,23 @@ public abstract class Tetromino {
     
     public Polygon leftMovedPolygon() {
         this.tetromino.setTranslateX(this.tetromino.getTranslateX() - move);
-        return this.tetromino;
+        Polygon leftMovedPolygon = this.tetromino;
+        this.tetromino.setTranslateX(this.tetromino.getTranslateX() + move);
+        return leftMovedPolygon;
     }
 
     public Polygon rightMovedPolygon() {
         this.tetromino.setTranslateX(this.tetromino.getTranslateX() + move);
-        return this.tetromino;        
+        Polygon rightMovedPolygon = this.tetromino;
+        this.tetromino.setTranslateX(this.tetromino.getTranslateX() - move);
+        return rightMovedPolygon;        
     }
 
     public Polygon downMovedPolygon() {
         this.tetromino.setTranslateY(this.tetromino.getTranslateY() + move);
-        return this.tetromino;
+        Polygon downMovedPolygon = this.tetromino;
+        this.tetromino.setTranslateY(this.tetromino.getTranslateY() - move);
+        return downMovedPolygon;
     }
     
     public void moveLeft() {
@@ -49,13 +56,13 @@ public abstract class Tetromino {
     
     public void moveRight() {
         if (!doesHitRightBorder(rightMovedPolygon())) {
-            this.tetromino.setTranslateX(this.tetromino.getTranslateX() + 15);
+            this.tetromino.setTranslateX(this.tetromino.getTranslateX() + move);
         }
     }
     
     public void moveDown() {
         if (!doesHitLowerBorder(downMovedPolygon())) {
-            this.tetromino.setTranslateY(this.tetromino.getTranslateY() + 15);
+            this.tetromino.setTranslateY(this.tetromino.getTranslateY() + move);
         }
     }
      
