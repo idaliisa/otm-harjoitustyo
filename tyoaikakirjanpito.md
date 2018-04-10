@@ -3,3 +3,5 @@
 | :----:|:--------------| :-----|
 | 26.3. | 0.5           | vaatimusmäärittelydokumentti |
 | 27.3. | 1.5           | vaatimusmäärittelydokumentti |
+| 7.4.  | 1             | projektin aloitus, TetrisUi ja Tetromino -luokat | 
+| 9.4   | 5             | Tetromino ja  Border -luokat, metodit, testaus | 
