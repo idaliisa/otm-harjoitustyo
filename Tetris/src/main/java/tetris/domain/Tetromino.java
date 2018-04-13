@@ -2,6 +2,7 @@
 package tetris.domain;
 
 
+import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -13,6 +14,7 @@ public abstract class Tetromino {
     private Point2D point;
     private Border bord;
     private int move;
+    private boolean active;
     
     public Tetromino(Polygon polygon, int x, int y) {
         this.tetromino = polygon;
@@ -20,6 +22,7 @@ public abstract class Tetromino {
         this.bord = new Border(0,0);
         this.move = 15;
         initLocation();
+        this.active = true;
     }
     
     public void initLocation() {
@@ -63,7 +66,13 @@ public abstract class Tetromino {
     public void moveDown() {
         if (!doesHitLowerBorder(downMovedPolygon())) {
             this.tetromino.setTranslateY(this.tetromino.getTranslateY() + move);
+        } else {
+            this.active = false;
         }
+    }
+    
+    public boolean isActive() {
+        return this.active;
     }
      
     
@@ -80,6 +89,15 @@ public abstract class Tetromino {
     public boolean doesHitLowerBorder(Polygon polygon) {
         Polygon lowerBorder = bord.getPolygonLower();
         return Shape.intersect(polygon, lowerBorder).getBoundsInLocal().isEmpty() == false;
+    }
+    
+    public boolean doesHitAnotherTetromino(Polygon polygon, List<Polygon> polygons ) {
+        for (int i = 0; i < polygons.size(); i++) {
+            if (Shape.intersect(polygon, polygons.get(i)).getBoundsInLocal().isEmpty() == false) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Polygon getTetromino() {

@@ -1,12 +1,14 @@
-
 package tetris.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 import tetris.domain.Border;
 import tetris.domain.Tetromino;
@@ -23,6 +25,7 @@ public class TetrisUi extends Application {
     public static int WIDTH = 360;
     public static int HEIGHT = 540;
     private Tetromino tetromino = drawRandomTetromino();
+    private List<Polygon> tetrominos = new ArrayList<>();
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -40,7 +43,14 @@ public class TetrisUi extends Application {
                     return;
                 }
                 previous = now;
-                tetromino.moveDown();
+                
+                if (tetromino.doesHitLowerBorder(tetromino.getTetromino()) || tetromino.doesHitAnotherTetromino(tetromino.getTetromino(), tetrominos)) {
+                    tetrominos.add(tetromino.getTetromino());
+                    tetromino = drawRandomTetromino();
+                    pane.getChildren().add(tetromino.getTetromino());
+                } else {
+                    tetromino.moveDown();
+                }   
             }    
         }.start();
         
@@ -50,6 +60,8 @@ public class TetrisUi extends Application {
                 tetromino.moveRight();
             } else if (event.getCode().equals(KeyCode.LEFT) && !tetromino.doesHitLowerBorder(tetromino.getTetromino())) {
                 tetromino.moveLeft();
+            } else if (event.getCode().equals(KeyCode.DOWN) && !tetromino.doesHitLowerBorder(tetromino.getTetromino())) {
+                tetromino.moveDown();
             } else if (event.getCode().equals(KeyCode.ENTER) && !tetromino.doesHitLowerBorder(tetromino.getTetromino())) {
                 tetromino.rotate();
             }

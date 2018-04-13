@@ -1,6 +1,9 @@
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+import javafx.scene.shape.Polygon;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -60,4 +63,47 @@ public class TetrominoTest {
         assertEquals(true, tetrominoI.doesHitLowerBorder(tetrominoI.getTetromino()));
     }
     
+    @Test
+    public void returnFalseWhenTetrominoDoesNotIntersectAnotherTetromino() {
+        List<Polygon> polygons = new ArrayList<>();
+        TetrominoI tetrominoTest = tetrominoI;
+        
+        //places a tetromino on the lowerBorder
+        int i = 0;
+        while (!tetrominoTest.doesHitLowerBorder(tetrominoTest.getTetromino())) {
+            tetrominoTest.moveDown();
+            i++;
+        }
+        polygons.add(tetrominoTest.getTetromino());
+        
+        //places another tetromino on top of previous tetromino
+        while (i > 1) {
+            tetrominoI.moveDown();
+            i--;
+        }
+        
+        assertEquals(false, tetrominoI.doesHitAnotherTetromino(tetrominoI.getTetromino(), polygons));
+    }
+    
+    @Test
+    public void returnTrueWhenTetrominoDoesIntersectAnotherTetromino() {
+        List<Polygon> polygons = new ArrayList<>();
+        TetrominoI tetrominoTest = tetrominoI;
+        
+        //places a tetromino on the lowerBorder
+        int i = 0;
+        while (!tetrominoTest.doesHitLowerBorder(tetrominoTest.getTetromino())) {
+            tetrominoTest.moveDown();
+            i++;
+        }
+        polygons.add(tetrominoTest.getTetromino());
+        
+        //another tetromino intersects the previous tetromino
+        while (i >= 0) {
+            tetrominoI.moveDown();
+            i--;
+        }
+        
+        assertEquals(true, tetrominoI.doesHitAnotherTetromino(tetrominoI.getTetromino(), polygons));
+    }
 }
