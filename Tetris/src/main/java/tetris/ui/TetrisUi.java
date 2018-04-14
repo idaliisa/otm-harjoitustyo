@@ -39,7 +39,7 @@ public class TetrisUi extends Application {
             private long previous;
             @Override
             public void handle(long now) {
-                if (now - previous < 200_000_000) {
+                if (now - previous < 400_000_000) {
                     return;
                 }
                 previous = now;
@@ -56,13 +56,13 @@ public class TetrisUi extends Application {
         
         scene.setOnKeyPressed(event -> {
             //one can use buttons to control tetromino until lower border is reached
-            if (event.getCode().equals(KeyCode.RIGHT) && !tetromino.doesHitLowerBorder(tetromino.getTetromino())) {
+            if (event.getCode().equals(KeyCode.RIGHT) && !tetromino.doesHitLowerBorder(tetromino.getTetromino()) && !tetromino.doesHitAnotherTetromino(tetromino.getTetromino(), tetrominos)) {
                 tetromino.moveRight();
-            } else if (event.getCode().equals(KeyCode.LEFT) && !tetromino.doesHitLowerBorder(tetromino.getTetromino())) {
+            } else if (event.getCode().equals(KeyCode.LEFT) && !tetromino.doesHitLowerBorder(tetromino.getTetromino()) && !tetromino.doesHitAnotherTetromino(tetromino.getTetromino(), tetrominos)) {
                 tetromino.moveLeft();
-            } else if (event.getCode().equals(KeyCode.DOWN) && !tetromino.doesHitLowerBorder(tetromino.getTetromino())) {
+            } else if (event.getCode().equals(KeyCode.DOWN) && !tetromino.doesHitLowerBorder(tetromino.getTetromino()) && !tetromino.doesHitAnotherTetromino(tetromino.getTetromino(), tetrominos)) {
                 tetromino.moveDown();
-            } else if (event.getCode().equals(KeyCode.ENTER) && !tetromino.doesHitLowerBorder(tetromino.getTetromino())) {
+            } else if (event.getCode().equals(KeyCode.ENTER) && !tetromino.doesHitLowerBorder(tetromino.getTetromino()) && !tetromino.doesHitAnotherTetromino(tetromino.getTetromino(), tetrominos)) {
                 tetromino.rotate();
             }
         });

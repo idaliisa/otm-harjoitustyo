@@ -20,7 +20,7 @@ public abstract class Tetromino {
         this.tetromino = polygon;
         this.point = new Point2D(x, y);
         this.bord = new Border(0,0);
-        this.move = 15;
+        this.move = 30;
         initLocation();
         this.active = true;
     }
@@ -56,6 +56,8 @@ public abstract class Tetromino {
             this.tetromino.setTranslateX(this.tetromino.getTranslateX() - move);
         }
     }
+    
+    
     
     public void moveRight() {
         if (!doesHitRightBorder(rightMovedPolygon())) {
