@@ -59,29 +59,6 @@ public class UserFileDaoTest {
         assertEquals("new user", user.getUsername());
     }
     
-//    @Test
-//    public void returnTrueIfUsernameIsAtLeastFiveCharacters() {
-//        assertEquals(true, userDao.isAtLeastFiveCharacters("usern"));
-//    }
-//    
-//    @Test
-//    public void returnFalseIfUsernameIsLessThanFiveCharacters() {
-//        assertEquals(false, userDao.isAtLeastFiveCharacters("user"));
-//    }
-//    
-//    @Test
-//    public void returnTrueIfUsernameIsUnique() throws Exception {
-//        User user = new User("user name");
-//        userDao.createUser(user);
-//        assertEquals(false, userDao.isUnique(user));
-//    }
-//    
-//    @Test
-//    public void returnFalseIfUsernameIsNotUnique() throws Exception {
-//        User user = new User("new user");
-//        userDao.createUser(user);
-//        assertEquals(true, userDao.isUnique(user));
-//    }
     
     @After
     public void tearDown() {
