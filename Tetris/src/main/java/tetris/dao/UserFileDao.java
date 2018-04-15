@@ -54,31 +54,5 @@ public class UserFileDao implements UserDao {
                 fileWriter.write(user.getUsername() +"\n");
             }
         }  
-    }
-    
-//    @Override
-//    public boolean isAtLeastFiveCharacters(String username) {
-//        return username.length() >= 5;
-//    }
-//    
-//    @Override
-//    public boolean isUnique(Object object) throws Exception {
-//        int i = 0;
-//        for (User user : users) {
-//            if (user.equals(object)) {
-//                i++;
-//            }
-//        }
-//        if (i == 1) {
-//            return true;
-//        } else if (i > 1) {
-//            return false;
-//        } else {
-//            throw new Exception("user was not on the list");
-//        }
-//    }
-
-    
-    
-    
+    }    
 }

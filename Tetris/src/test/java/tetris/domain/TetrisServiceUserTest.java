@@ -1,11 +1,8 @@
 
 package tetris.domain;
 
-import com.sun.xml.internal.bind.v2.TODO;
-import org.junit.After;
-import org.junit.AfterClass;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
