@@ -1,6 +1,7 @@
 
 package tetris.domain;
 
+
 import tetris.dao.UserDao;
 
 
@@ -33,7 +34,7 @@ public class TetrisService {
     }
     
     public boolean login(String username) {
-        User user= userDao.findByUsername(username);
+        User user = userDao.findByUsername(username);
         if (user == null) {
             return false;
         }
@@ -48,5 +49,5 @@ public class TetrisService {
     public void logout() {
         this.loggedInUser = null;
     }
-    
+        
 }

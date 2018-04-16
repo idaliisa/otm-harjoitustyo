@@ -8,3 +8,5 @@
 | 10.4  | 5             | Tetromino-luokan metodit ja testit, tetrominon näppäinohjaus, tetromino arvotaan |
 | 13.4  | 3             | Uusi palikka jos edellinen törmää, testaus |
 | 14.4  | 8             | sovelluslogiikan eriyttäminen, törmäyksen testaaminen, käyttäjän sekä käyttäjädaon lisääminen ja testaaminen |
+| 15.4  | 7.5           | käyttäjätunnus on uniikki ja väh. viisimerkkinen, käyttäjä voi aloittaa uuden pelin; metodit ja niiden testeaus, graafinen käyttöliittymä. Checkstyle. Tetrominon aloitus alusta |
+| 16.4  | 3.5           | tetrominot ja niiden metodit, käyttöliittymä, testaus |

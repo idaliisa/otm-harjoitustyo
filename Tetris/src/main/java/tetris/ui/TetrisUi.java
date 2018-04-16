@@ -6,22 +6,25 @@ import java.util.Properties;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import tetris.dao.UserFileDao;
-import tetris.domain.Border;
 import tetris.domain.GameBoard;
 import tetris.domain.TetrisService;
 
 
 public class TetrisUi extends Application {
-    public static int WIDTH = 360;
-    public static int HEIGHT = 540;
+    public static int WIDTH = 12;
+    public static int HEIGHT = 18;
+    private double squareSize = 30.0;
     private TetrisService tetrisService;
     
     @Override
@@ -88,45 +91,44 @@ public class TetrisUi extends Application {
     }
     
     public void playTetris(Stage tertiaryStage) {
+        Canvas canvas = new Canvas(WIDTH * squareSize, HEIGHT * squareSize);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        GameBoard gb = new GameBoard(WIDTH, HEIGHT);
         BorderPane pane = new BorderPane();
-        pane.setPrefSize(WIDTH, HEIGHT);
-        
-        GameBoard canvas = new GameBoard();
-        
-        //adding a tetromino that a player can control
-        pane.getChildren().add(canvas.getTetromino().getPolygon());
-        
-        
-        Border border = new Border(0, 0);
-        pane.getChildren().add(border.getPolygonLower());
-        
+        pane.setCenter(canvas);
         Scene tetrisScene = new Scene(pane);
         
         new AnimationTimer() {
             private long previous;
             @Override
-            public void handle(long now) {
-                
+            public void handle(long now) {                
                 if (now - previous < 400_000_000) {
                     return;
                 }
                 previous = now;
                 
-                //if the tetromino hits a lower border or another tetromino, new tetromino is added. Otherwise the tetromino moves down.
-                if (canvas.NewTetrominoOrMoveDown()) {
-                    pane.getChildren().add(canvas.getTetromino().getPolygon());
-                }
-            }    
+                gc.setFill(Color.BLACK);
+                gc.fillRect(0, 0, WIDTH * squareSize, HEIGHT * squareSize);
+                
+                gc.setFill(Color.AQUA);
+                gb.getTetromino().getTetromino().stream().forEach(piece -> {
+                    gc.fillRect(piece.getX() * squareSize, piece.getY() * squareSize, squareSize, squareSize);
+                });
+                gb.getTetromino().moveDown();
+                gb.newTetromino();
+                
+                gc.setFill(Color.AQUA);
+                gb.getPiecesOnBoard().stream().forEach(piece -> {
+                    gc.fillRect(piece.getX() * squareSize, piece.getY() * squareSize, squareSize, squareSize);
+                });
+            }
         }.start();
         
         tetrisScene.setOnKeyPressed(event -> {
-            //one can use buttons to control tetromino until lower border is reached
-            if (event.getCode().equals(KeyCode.LEFT) && canvas.moveLeft()) {
-                ;
-            } else if (event.getCode().equals(KeyCode.RIGHT) && canvas.moveRight()) {
-                ;
-            } else if (event.getCode().equals(KeyCode.ENTER) && canvas.rotate()) {
-                ;
+            if (event.getCode().equals(KeyCode.LEFT) && !gb.hitLeftBorder()) {
+                gb.getTetromino().moveLeft();
+            } else if (event.getCode().equals(KeyCode.RIGHT) && !gb.hitRightBorder()) {
+                gb.getTetromino().moveRight();
             }
         });
         
