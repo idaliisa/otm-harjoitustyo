@@ -15,13 +15,17 @@ public class GameBoard {
 
     public GameBoard(int width, int height) {
         this.width = width;
-        this.height= height;
+        this.height = height;
         this.tetromino = drawRandomTetromino();
         this.piecesOnBoard = new ArrayList<>();
     }
 
     public Tetromino getTetromino() {
         return tetromino;
+    }
+
+    public void setTetromino(Tetromino tetromino) {
+        this.tetromino = tetromino;
     }
 
     public List<Piece> getPiecesOnBoard() {

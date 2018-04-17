@@ -2,8 +2,6 @@
 package tetris.domain;
 
 import java.util.List;
-import javafx.scene.shape.Polygon;
-
 
 public class TetrominoJ extends Tetromino {
     

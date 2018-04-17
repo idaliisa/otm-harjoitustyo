@@ -1,10 +1,7 @@
 
 package tetris.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.shape.Polygon;
-import tetris.ui.TetrisUi;
 
 
 public class TetrominoO extends Tetromino {

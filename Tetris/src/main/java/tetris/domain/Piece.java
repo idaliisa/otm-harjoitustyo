@@ -2,28 +2,28 @@
 package tetris.domain;
 
 public class Piece {
-    private int X;
-    private int Y;
+    private int x;
+    private int y;
 
-    public Piece(int X, int Y) {
-        this.X = X;
-        this.Y = Y;
+    public Piece(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {
-        return X;
+        return x;
     }
 
     public int getY() {
-        return Y;
+        return y;
     }
 
-    public void setX(int X) {
-        this.X = X;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public void setY(int Y) {
-        this.Y = Y;
+    public void setY(int y) {
+        this.y = y;
     }
     
     public boolean hit(Piece piece) {
@@ -45,11 +45,11 @@ public class Piece {
         }
         
         Piece piece = (Piece) object;
-        if (this.X != piece.getX()) {
+        if (this.x != piece.getX()) {
             return false;
         }
         
-        if (this.Y != piece.getY()) {
+        if (this.y != piece.getY()) {
             return false;
         }
         
