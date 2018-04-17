@@ -10,3 +10,4 @@
 | 14.4  | 8             | sovelluslogiikan eriyttäminen, törmäyksen testaaminen, käyttäjän sekä käyttäjädaon lisääminen ja testaaminen |
 | 15.4  | 7.5           | käyttäjätunnus on uniikki ja väh. viisimerkkinen, käyttäjä voi aloittaa uuden pelin; metodit ja niiden testeaus, graafinen käyttöliittymä. Checkstyle. Tetrominon aloitus alusta |
 | 16.4  | 3.5           | tetrominot ja niiden metodit, käyttöliittymä, testaus |
+| 17.4  | 1.5           | GameBoardTest, luokkakaavio |
