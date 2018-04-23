@@ -70,5 +70,16 @@ public class TetrominoOTest {
         assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 + 3));    
     }
     
-    
+    @Test
+    public void rotatesOnceCorrectly() {
+        tetromino.rotate();
+        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 - 1));
+        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2));
+        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 + 1));
+        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 + 2));
+        assertFalse(tetromino.hitY(- 1));
+        assertTrue(tetromino.hitY(0));
+        assertTrue(tetromino.hitY(1));
+        assertFalse(tetromino.hitY(2));
+    }
 }

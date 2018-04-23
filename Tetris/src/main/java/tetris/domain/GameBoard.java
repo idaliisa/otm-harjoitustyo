@@ -4,6 +4,7 @@ package tetris.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 
 public class GameBoard {
@@ -32,31 +33,54 @@ public class GameBoard {
         return piecesOnBoard;
     }
     
-    public boolean newTetromino() {
-        if (hitLowerBorder()) {
-            tetromino.getTetromino().stream().forEach(piece -> piecesOnBoard.add(piece));
-            tetromino = drawRandomTetromino();
-            return true;
-        }
-        return false;
+    public void addTetrominoOnBoard() {
+        tetromino.getTetromino().stream().forEach(piece -> piecesOnBoard.add(piece));
+    }
+    
+    public void newTetromino() {
+        tetromino = drawRandomTetromino();
+    }
+    
+    public void moveTetrominoDown() {
+        tetromino.moveDown();
+        if (tetromino.hitPiece(piecesOnBoard) || hitLowerBorder()) {
+            tetromino.moveUp();
+            addTetrominoOnBoard();
+            dropIfRowComplete();
+            newTetromino();
+        }  
+    }
+    
+    public void moveTetrominoRight() {
+        tetromino.moveRight();
+        if (tetromino.hitPiece(piecesOnBoard) || hitRightBorder()) {
+            tetromino.moveLeft();
+        }  
+    }
+    
+    public void moveTetrominoLeft() {
+        tetromino.moveLeft();
+        if (tetromino.hitPiece(piecesOnBoard) || hitLeftBorder()) {
+            tetromino.moveRight();
+        }  
     }
     
     public boolean hitLowerBorder() {
-        if (tetromino.hitY(height - 1)) {
+        if (tetromino.hitY(height)) {
             return true;
         }
         return false;
     }
     
     public boolean hitLeftBorder() {
-        if (tetromino.hitX(0)) {
+        if (tetromino.hitX(- 1)) {
             return true;
         }
         return false;
     }
     
     public boolean hitRightBorder() {
-        if (tetromino.hitX(width - 1)) {
+        if (tetromino.hitX(width)) {
             return true;
         }
         return false;
@@ -80,6 +104,42 @@ public class GameBoard {
         } else {
             return new TetrominoZ(width / 2, 0, new ArrayList<>());
         }  
+    }
+    
+    public void dropIfRowComplete() {
+        int minY = tetromino.getMinY();
+        int maxY = tetromino.getMaxY();
+        for(int i = minY; i <= maxY; i++) {
+            if (rowComplete(i)) {
+                removeRow(i);
+                dropUpperRows(i);
+            }
+        }
+    }
+    
+    public boolean rowComplete(int i) {
+        long l = piecesOnBoard.stream().filter(y -> y.getY() == i).count();
+        if (l == width) {
+            return true;
+        }
+        return false;
+    }
+    
+    public void removeRow(int i) {
+        piecesOnBoard = piecesOnBoard.stream().filter(y -> !(y.getY() == i)).collect(Collectors.toCollection(ArrayList::new));
+    }
+    
+    public void dropUpperRows(int i) {
+        piecesOnBoard.stream().filter(y -> y.getY() < i).forEach(x -> x.setY(x.getY() + 1));
+    }
+    
+    public void rotateTetromino() {
+        tetromino.rotate();
+        if (tetromino.hitPiece(piecesOnBoard) || hitLeftBorder() || hitRightBorder() || hitLowerBorder()) {
+            tetromino.rotate();
+            tetromino.rotate();
+            tetromino.rotate();
+        }
     }
 }
 

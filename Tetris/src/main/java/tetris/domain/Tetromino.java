@@ -3,6 +3,7 @@ package tetris.domain;
 
 
 import java.util.List;
+import tetris.ui.TetrisUi;
 
 
 public abstract class Tetromino {
@@ -27,6 +28,34 @@ public abstract class Tetromino {
     public List<Piece> getTetromino() {
         return tetromino;
     }
+
+    public void setTetromino(List<Piece> tetromino) {
+        this.tetromino = tetromino;
+    }
+    
+    public int getMinY() {
+        int min = tetromino.get(0).getY();
+        for (int i = 1; i < tetromino.size(); i++) {
+            if (tetromino.get(i).getY() < min) {
+                min = tetromino.get(i).getY();
+            }
+        }
+        return min;
+    }
+    
+    public int getMaxY() {
+        int max = tetromino.get(0).getY();
+        for (int i = 1; i < tetromino.size(); i++) {
+            if (tetromino.get(i).getY() > max) {
+                max = tetromino.get(i).getY();
+            }
+        }
+        return max;
+    }
+    
+    public void moveUp () {
+        this.tetromino.stream().forEach(piece -> piece.setY(piece.getY() - 1));
+    }
     
     public void moveDown() {
         this.tetromino.stream().forEach(piece -> piece.setY(piece.getY() + 1));
@@ -39,7 +68,7 @@ public abstract class Tetromino {
     public void moveRight() {
         this.tetromino.stream().forEach(piece -> piece.setX(piece.getX() + 1));
     }
-    
+        
     public boolean hitPiece(List<Piece> pieces) {
         for (Piece piece : pieces) {
             if (tetromino.contains(piece)) {
@@ -66,4 +95,6 @@ public abstract class Tetromino {
         }
         return false;
     }
+    
+    abstract void rotate();
 }

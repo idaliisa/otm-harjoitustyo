@@ -22,5 +22,9 @@ public class TetrominoO extends Tetromino {
         tetromino.add(third);
         tetromino.add(fourth);
         
-    }    
+    }
+
+    public void rotate() {
+        
+    }
 }

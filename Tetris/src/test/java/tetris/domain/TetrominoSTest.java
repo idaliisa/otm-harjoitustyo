@@ -52,4 +52,62 @@ public class TetrominoSTest {
         assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 + 2));
         assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 + 3));    
     }
+    
+    @Test
+    public void rotatesOnceCorrectly() {
+        tetromino.rotate();
+        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 - 2));
+        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 - 1));
+        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2));
+        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 + 1));
+        assertFalse(tetromino.hitY(- 2));
+        assertTrue(tetromino.hitY(- 1));
+        assertTrue(tetromino.hitY(1));
+        assertFalse(tetromino.hitY(2));
+    }
+    
+    @Test
+    public void rotatesTwiceCorrectly() {
+        tetromino.rotate();
+        tetromino.rotate();
+        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 - 2));
+        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 - 1));
+        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 + 1));
+        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 + 2));
+        assertFalse(tetromino.hitY(- 2));
+        assertTrue(tetromino.hitY(- 1));
+        assertTrue(tetromino.hitY(0));
+        assertFalse(tetromino.hitY(1));
+    }
+    
+    @Test
+    public void rotatesThreeTimesCorrectly() {
+        tetromino.rotate();
+        tetromino.rotate();
+        tetromino.rotate();
+        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 - 1));
+        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2));
+        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 + 1));
+        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 + 2));
+        assertFalse(tetromino.hitY(- 2));
+        assertTrue(tetromino.hitY(- 1));
+        assertTrue(tetromino.hitY(1));
+        assertFalse(tetromino.hitY(2));
+    }
+    
+    @Test
+    public void rotatesFourTimesCorrectly() {
+        tetromino.rotate();
+        tetromino.rotate();
+        tetromino.rotate();
+        tetromino.rotate();
+        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 - 2));
+        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 - 1));
+        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 + 1));
+        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 + 2));
+        assertFalse(tetromino.hitY(- 1));
+        assertTrue(tetromino.hitY(0));
+        assertTrue(tetromino.hitY(1));
+        assertFalse(tetromino.hitY(2));
+    }
 }

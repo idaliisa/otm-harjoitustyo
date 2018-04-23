@@ -26,7 +26,7 @@ public class GameBoardTest {
     
     @Test
     public void returnTrueWhenTetrominoHitsLowerBorder() {
-        for (int i = 1; i < HEIGHT; i++) {
+        for (int i = 0; i < HEIGHT; i++) {
             gb.getTetromino().moveDown();
         }
         assertTrue(gb.hitLowerBorder());
@@ -34,12 +34,63 @@ public class GameBoardTest {
     }
     
     @Test
-    public void returnFalseeWhenTetrominoDoesNotHitLowerBorder() {
+    public void returnFalseWhenTetrominoDoesNotHitLowerBorder() {
         for (int i = 1; i < HEIGHT - 1; i++){
             gb.getTetromino().moveDown();
         }
         assertFalse(gb.hitLowerBorder());
         
+    }
+    
+    @Test
+    public void returnTrueWhenTetrominoHitsLeftBorder() {
+        for (int i = 1; i < WIDTH / 2; i++) {
+            gb.getTetromino().moveLeft();
+        }
+        assertTrue(gb.hitLeftBorder());
+        
+    }
+    
+    @Test
+    public void returnFalseWhenTetrominoDoesNotHitLeftBorder() {
+        for (int i = 3; i < WIDTH / 2; i++){
+            gb.getTetromino().moveLeft();
+        }
+        assertFalse(gb.hitLeftBorder());
+        
+    }
+    
+    @Test
+    public void returnTrueWhenTetrominoHitsRightBorder() {
+        for (int i = 0; i < WIDTH / 2; i++) {
+            gb.getTetromino().moveRight();
+        }
+        assertTrue(gb.hitRightBorder());
+        
+    }
+    
+    @Test
+    public void returnFalseWhenTetrominoDoesNotHitRightBorder() {
+        for (int i = 2; i < WIDTH / 2; i++){
+            gb.getTetromino().moveRight();
+        }
+        assertFalse(gb.hitRightBorder());   
+    }
+    
+    @Test
+    public void returnTrueWhenRowComplete() {
+        for (int i = 0; i < WIDTH; i++) {
+            gb.getPiecesOnBoard().add(new Piece(i,0));
+        }
+        assertTrue(gb.rowComplete(0));
+    }
+    
+    @Test
+    public void returnFalseWhenRowNotComplete() {
+        for (int i = 1; i < WIDTH; i++) {
+            gb.getPiecesOnBoard().add(new Piece(i,0));
+        }
+        assertFalse(gb.rowComplete(0));
     }
     
 }

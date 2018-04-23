@@ -114,8 +114,7 @@ public class TetrisUi extends Application {
                 gb.getTetromino().getTetromino().stream().forEach(piece -> {
                     gc.fillRect(piece.getX() * squareSize, piece.getY() * squareSize, squareSize, squareSize);
                 });
-                gb.getTetromino().moveDown();
-                gb.newTetromino();
+                gb.moveTetrominoDown();
                 
                 gc.setFill(Color.AQUA);
                 gb.getPiecesOnBoard().stream().forEach(piece -> {
@@ -125,10 +124,14 @@ public class TetrisUi extends Application {
         }.start();
         
         tetrisScene.setOnKeyPressed(event -> {
-            if (event.getCode().equals(KeyCode.LEFT) && !gb.hitLeftBorder()) {
-                gb.getTetromino().moveLeft();
-            } else if (event.getCode().equals(KeyCode.RIGHT) && !gb.hitRightBorder()) {
-                gb.getTetromino().moveRight();
+            if (event.getCode().equals(KeyCode.LEFT)) {
+                gb.moveTetrominoLeft();
+            } else if (event.getCode().equals(KeyCode.RIGHT)) {
+                gb.moveTetrominoRight();
+            } else if (event.getCode().equals(KeyCode.DOWN)) {
+                gb.moveTetrominoDown();
+            } else if (event.getCode().equals(KeyCode.UP)) {
+                gb.rotateTetromino();
             }
         });
         
