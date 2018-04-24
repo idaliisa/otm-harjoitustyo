@@ -34,7 +34,7 @@ public class GameBoard {
     }
     
     public void addTetrominoOnBoard() {
-        tetromino.getTetromino().stream().forEach(piece -> piecesOnBoard.add(piece));
+        tetromino.getPieces().stream().forEach(piece -> piecesOnBoard.add(piece));
     }
     
     public void newTetromino() {
@@ -43,7 +43,7 @@ public class GameBoard {
     
     public void moveTetrominoDown() {
         tetromino.moveDown();
-        if (tetromino.hitPiece(piecesOnBoard) || hitLowerBorder()) {
+        if (hitPiecesOnBoard() || hitLowerBorder()) {
             tetromino.moveUp();
             addTetrominoOnBoard();
             dropIfRowComplete();
@@ -53,14 +53,14 @@ public class GameBoard {
     
     public void moveTetrominoRight() {
         tetromino.moveRight();
-        if (tetromino.hitPiece(piecesOnBoard) || hitRightBorder()) {
+        if (hitPiecesOnBoard() || hitRightBorder()) {
             tetromino.moveLeft();
         }  
     }
     
     public void moveTetrominoLeft() {
         tetromino.moveLeft();
-        if (tetromino.hitPiece(piecesOnBoard) || hitLeftBorder()) {
+        if (hitPiecesOnBoard() || hitLeftBorder()) {
             tetromino.moveRight();
         }  
     }
@@ -86,23 +86,27 @@ public class GameBoard {
         return false;
     }
     
+    public boolean hitPiecesOnBoard() {
+        return tetromino.hitPiece(piecesOnBoard);
+    }
+    
     public Tetromino drawRandomTetromino() {
         Random random = new Random();
         int next = random.nextInt(7);
         if (next == 1) {
-            return new TetrominoI(width / 2, 0, new ArrayList<>());
+            return new TetrominoI(width);
         } else if (next == 2) {
-            return new TetrominoJ(width / 2, 0, new ArrayList<>());
+            return new TetrominoJ(width);
         } else if (next == 3) {
-            return new TetrominoL(width / 2, 0, new ArrayList<>());
+            return new TetrominoL(width);
         } else if (next == 4) {
-            return new TetrominoO(width / 2, 0, new ArrayList<>());
+            return new TetrominoO(width);
         } else if (next == 5) {
-            return new TetrominoS(width / 2, 0, new ArrayList<>());
+            return new TetrominoS(width);
         } else if (next == 6) {
-            return new TetrominoT(width / 2, 0, new ArrayList<>());
+            return new TetrominoT(width);
         } else {
-            return new TetrominoZ(width / 2, 0, new ArrayList<>());
+            return new TetrominoZ(width);
         }  
     }
     
@@ -135,7 +139,7 @@ public class GameBoard {
     
     public void rotateTetromino() {
         tetromino.rotate();
-        if (tetromino.hitPiece(piecesOnBoard) || hitLeftBorder() || hitRightBorder() || hitLowerBorder()) {
+        if (hitPiecesOnBoard() || hitLeftBorder() || hitRightBorder() || hitLowerBorder()) {
             tetromino.rotate();
             tetromino.rotate();
             tetromino.rotate();

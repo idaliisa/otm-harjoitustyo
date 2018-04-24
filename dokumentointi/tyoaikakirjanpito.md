@@ -11,3 +11,6 @@
 | 15.4  | 7.5           | käyttäjätunnus on uniikki ja väh. viisimerkkinen, käyttäjä voi aloittaa uuden pelin; metodit ja niiden testeaus, graafinen käyttöliittymä. Checkstyle. Tetrominon aloitus alusta |
 | 16.4  | 3.5           | tetrominot ja niiden metodit, käyttöliittymä, testaus |
 | 17.4  | 1.5           | GameBoardTest, luokkakaavio |
+| 22.4  | 5             | rivin voi pudottaa, tetrominoa ei voi liikuuttaa jos se osuu toiseen tetrominoon, tetrominon kääntäminen aloitettu |
+| 23.4  | 3.5           | testaus, refaktorointi |
+| 24.4  |

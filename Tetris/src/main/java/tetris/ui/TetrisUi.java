@@ -111,7 +111,7 @@ public class TetrisUi extends Application {
                 gc.fillRect(0, 0, WIDTH * squareSize, HEIGHT * squareSize);
                 
                 gc.setFill(Color.AQUA);
-                gb.getTetromino().getTetromino().stream().forEach(piece -> {
+                gb.getTetromino().getPieces().stream().forEach(piece -> {
                     gc.fillRect(piece.getX() * squareSize, piece.getY() * squareSize, squareSize, squareSize);
                 });
                 gb.moveTetrominoDown();

@@ -1,11 +1,7 @@
 
 package tetris.domain;
 
-import java.util.ArrayList;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static tetris.ui.TetrisUi.HEIGHT;
@@ -21,7 +17,7 @@ public class GameBoardTest {
     @Before
     public void setUp() {
         gb = new GameBoard(WIDTH, HEIGHT);
-        gb.setTetromino(new TetrominoI(WIDTH / 2, 0, new ArrayList<>()));    
+        gb.setTetromino(new TetrominoI(WIDTH));    
     }
     
     @Test

@@ -1,74 +1,71 @@
 
 package tetris.domain;
 
-import java.util.List;
 
 public class TetrominoJ extends Tetromino {
     
-    private Piece first;
-    private Piece second;
-    private Piece third;
-    private Piece fourth;
     private int direction;
 
-    public TetrominoJ(int initialX, int initialY, List<Piece> tetromino) {
-        super(initialX, initialY, tetromino);
+    public TetrominoJ(int width) {
+        super(width);
         this.first = new Piece(initialX - 1, initialY);
         this.second = new Piece(initialX, initialY);
         this.third = new Piece(initialX + 1, initialY);
         this.fourth = new Piece(initialX + 1, initialY + 1);
+        this.x = second.getX();
+        this.y = second.getY();
         this.direction = 1;
    
-        tetromino.add(first);
-        tetromino.add(second);
-        tetromino.add(third);
-        tetromino.add(fourth);
+        pieces.add(first);
+        pieces.add(second);
+        pieces.add(third);
+        pieces.add(fourth);
         
     }
     
     public void rotate() {
         if (this.direction == 1) {
-            first.setX(second.getX());
-            first.setY(second.getY() - 1);
-            second.setX(second.getX());
-            second.setY(second.getY());
-            third.setX(second.getX());
-            third.setY(second.getY() + 1);
-            fourth.setX(second.getX() - 1);
-            fourth.setY(second.getY() + 1);
+            first.setX(x);
+            first.setY(y - 1);
+            second.setX(x);
+            second.setY(y);
+            third.setX(x);
+            third.setY(y + 1);
+            fourth.setX(x - 1);
+            fourth.setY(y + 1);
             this.direction = 2;
         }
         if (this.direction == 2) {
-            first.setX(second.getX() + 1);
-            first.setY(second.getY());
-            second.setX(second.getX());
-            second.setY(second.getY());
-            third.setX(second.getX() - 1);
-            third.setY(second.getY());
-            fourth.setX(second.getX() - 1);
-            fourth.setY(second.getY() - 1);
+            first.setX(x + 1);
+            first.setY(y);
+            second.setX(x);
+            second.setY(y);
+            third.setX(x - 1);
+            third.setY(y);
+            fourth.setX(x - 1);
+            fourth.setY(y- 1);
             this.direction = 3;
         }
         if (this.direction == 3) {
-            first.setX(second.getX());
-            first.setY(second.getY() + 1);
-            second.setX(second.getX());
-            second.setY(second.getY());
-            third.setX(second.getX());
-            third.setY(second.getY() - 1);
-            fourth.setX(second.getX() + 1);
-            fourth.setY(second.getY() - 1);
+            first.setX(x);
+            first.setY(y + 1);
+            second.setX(x);
+            second.setY(y);
+            third.setX(x);
+            third.setY(y - 1);
+            fourth.setX(x + 1);
+            fourth.setY(y - 1);
             this.direction = 4;
         }
         if (this.direction == 4) {
-            first.setX(second.getX() - 1);
-            first.setY(second.getY());
-            second.setX(second.getX());
-            second.setY(second.getY());
-            third.setX(second.getX() + 1);
-            third.setY(second.getY());
-            fourth.setX(second.getX() + 1);
-            fourth.setY(second.getY() + 1);
+            first.setX(x - 1);
+            first.setY(y);
+            second.setX(x);
+            second.setY(y);
+            third.setX(x + 1);
+            third.setY(y);
+            fourth.setX(x + 1);
+            fourth.setY(y + 1);
             this.direction = 1;
         }
     }

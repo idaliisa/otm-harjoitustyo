@@ -1,11 +1,8 @@
 
 package tetris.domain;
 
-import java.util.ArrayList;
-import org.junit.After;
-import org.junit.AfterClass;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import tetris.ui.TetrisUi;
@@ -13,6 +10,7 @@ import tetris.ui.TetrisUi;
 
 public class TetrominoOTest {
     TetrominoO tetromino;
+    int x;
     
     public TetrominoOTest() {
     }
@@ -20,17 +18,18 @@ public class TetrominoOTest {
     
     @Before
     public void setUp() {
-        tetromino = new TetrominoO(TetrisUi.WIDTH / 2, 0, new ArrayList<>());
+        tetromino = new TetrominoO(TetrisUi.WIDTH);
+        x = TetrisUi.WIDTH / 2;
     }
     
     @Test
     public void returnTrueWhenTetrominoHitX() {
-        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2));
+        assertTrue(tetromino.hitX(x));
     }
     
     @Test
     public void returnFalseWhenTetrominoDoesNotHitX() {
-        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 - 1));
+        assertFalse(tetromino.hitX(x - 1));
     }
     
     @Test
@@ -55,28 +54,28 @@ public class TetrominoOTest {
     @Test
     public void movesLeftCorrectly() {
         tetromino.moveLeft();
-        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 - 2));
-        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 - 1));
-        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2));
-        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 + 1));    
+        assertFalse(tetromino.hitX(x - 2));
+        assertTrue(tetromino.hitX(x - 1));
+        assertTrue(tetromino.hitX(x));
+        assertFalse(tetromino.hitX(x + 1));    
     }
     
     @Test
     public void movesRightCorrectly() {
         tetromino.moveRight();
-        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2));
-        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 + 1));
-        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 + 2));
-        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 + 3));    
+        assertFalse(tetromino.hitX(x));
+        assertTrue(tetromino.hitX(x + 1));
+        assertTrue(tetromino.hitX(x + 2));
+        assertFalse(tetromino.hitX(x + 3));    
     }
     
     @Test
     public void rotatesOnceCorrectly() {
         tetromino.rotate();
-        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 - 1));
-        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2));
-        assertTrue(tetromino.hitX(TetrisUi.WIDTH / 2 + 1));
-        assertFalse(tetromino.hitX(TetrisUi.WIDTH / 2 + 2));
+        assertFalse(tetromino.hitX(x - 1));
+        assertTrue(tetromino.hitX(x));
+        assertTrue(tetromino.hitX(x + 1));
+        assertFalse(tetromino.hitX(x + 2));
         assertFalse(tetromino.hitY(- 1));
         assertTrue(tetromino.hitY(0));
         assertTrue(tetromino.hitY(1));

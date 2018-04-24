@@ -2,19 +2,27 @@
 package tetris.domain;
 
 
+import java.util.ArrayList;
 import java.util.List;
-import tetris.ui.TetrisUi;
 
 
 public abstract class Tetromino {
     public int initialX;
     public int initialY;
-    public List<Piece> tetromino;
+    public List<Piece> pieces;
+    
+    public Piece first;
+    public Piece second;
+    public Piece third;
+    public Piece fourth;
+    public int x;
+    public int y;
+    
 
-    public Tetromino(int initialX, int initialY, List<Piece> tetromino) {
-        this.initialX = initialX;
-        this.initialY = initialY;
-        this.tetromino = tetromino;
+    public Tetromino(int width) {
+        this.initialX = width / 2;
+        this.initialY = 0;
+        this.pieces = new ArrayList<>();     
     }
     
     public int getInitialX() {
@@ -25,53 +33,55 @@ public abstract class Tetromino {
         return initialY;
     }
 
-    public List<Piece> getTetromino() {
-        return tetromino;
+    public List<Piece> getPieces() {
+        return pieces;
     }
 
-    public void setTetromino(List<Piece> tetromino) {
-        this.tetromino = tetromino;
+    public void setPieces(List<Piece> pieces) {
+        this.pieces = pieces;
     }
     
     public int getMinY() {
-        int min = tetromino.get(0).getY();
-        for (int i = 1; i < tetromino.size(); i++) {
-            if (tetromino.get(i).getY() < min) {
-                min = tetromino.get(i).getY();
+        int min = pieces.get(0).getY();
+        for (int i = 1; i < pieces.size(); i++) {
+            int next = pieces.get(i).getY();
+            if (next < min) {
+                min = next;
             }
         }
         return min;
     }
     
     public int getMaxY() {
-        int max = tetromino.get(0).getY();
-        for (int i = 1; i < tetromino.size(); i++) {
-            if (tetromino.get(i).getY() > max) {
-                max = tetromino.get(i).getY();
+        int max = pieces.get(0).getY();
+        for (int i = 1; i < pieces.size(); i++) {
+            int next = pieces.get(i).getY();
+            if (next > max) {
+                max = next;
             }
         }
         return max;
     }
     
     public void moveUp () {
-        this.tetromino.stream().forEach(piece -> piece.setY(piece.getY() - 1));
+        this.pieces.stream().forEach(piece -> piece.setY(piece.getY() - 1));
     }
     
     public void moveDown() {
-        this.tetromino.stream().forEach(piece -> piece.setY(piece.getY() + 1));
+        this.pieces.stream().forEach(piece -> piece.setY(piece.getY() + 1));
     }
     
     public void moveLeft() {
-        this.tetromino.stream().forEach(piece -> piece.setX(piece.getX() - 1));
+        this.pieces.stream().forEach(piece -> piece.setX(piece.getX() - 1));
     }
     
     public void moveRight() {
-        this.tetromino.stream().forEach(piece -> piece.setX(piece.getX() + 1));
+        this.pieces.stream().forEach(piece -> piece.setX(piece.getX() + 1));
     }
         
     public boolean hitPiece(List<Piece> pieces) {
         for (Piece piece : pieces) {
-            if (tetromino.contains(piece)) {
+            if (this.pieces.contains(piece)) {
                 return true;
             }   
         }
@@ -79,7 +89,7 @@ public abstract class Tetromino {
     }
     
     public boolean hitX(int x) {
-        for (Piece piece : tetromino) {
+        for (Piece piece : pieces) {
             if (piece.getX() == x) {
                 return true;
             }   
@@ -88,7 +98,7 @@ public abstract class Tetromino {
     }
     
     public boolean hitY(int y) {
-        for (Piece piece : tetromino) {
+        for (Piece piece : pieces) {
             if (piece.getY() == y) {
                 return true;
             }   
