@@ -14,3 +14,4 @@
 | 22.4  | 5             | rivin voi pudottaa, tetrominoa ei voi liikuuttaa jos se osuu toiseen tetrominoon, tetrominon kääntäminen aloitettu |
 | 23.4  | 3.5           | testaus, refaktorointi |
 | 24.4  | 6             | testaus, refaktorointi, checkstyle, sekvenssikaavio |
+| yht   | 51            |   |
