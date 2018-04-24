@@ -73,7 +73,7 @@ public class GameBoard {
     }
     
     public boolean hitLeftBorder() {
-        if (tetromino.hitX(- 1)) {
+        if (tetromino.hitX(-1)) {
             return true;
         }
         return false;
@@ -113,7 +113,7 @@ public class GameBoard {
     public void dropIfRowComplete() {
         int minY = tetromino.getMinY();
         int maxY = tetromino.getMaxY();
-        for(int i = minY; i <= maxY; i++) {
+        for (int i = minY; i <= maxY; i++) {
             if (rowComplete(i)) {
                 removeRow(i);
                 dropUpperRows(i);

@@ -16,8 +16,7 @@ public class TetrominoO extends Tetromino {
         pieces.add(first);
         pieces.add(second);
         pieces.add(third);
-        pieces.add(fourth);
-        
+        pieces.add(fourth);        
     }
 
     public void rotate() {

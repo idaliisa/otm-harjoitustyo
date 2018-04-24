@@ -10,13 +10,12 @@ public abstract class Tetromino {
     public int initialX;
     public int initialY;
     public List<Piece> pieces;
+    public int direction;
     
     public Piece first;
     public Piece second;
     public Piece third;
     public Piece fourth;
-    public int x;
-    public int y;
     
 
     public Tetromino(int width) {
@@ -63,7 +62,7 @@ public abstract class Tetromino {
         return max;
     }
     
-    public void moveUp () {
+    public void moveUp() {
         this.pieces.stream().forEach(piece -> piece.setY(piece.getY() - 1));
     }
     
@@ -107,4 +106,17 @@ public abstract class Tetromino {
     }
     
     abstract void rotate();
+    
+    public void setPiece(Piece piece, int x, int y) {
+        piece.setX(getX() + x);
+        piece.setY(getY() + y);
+    }
+    
+    public int getX() {
+        return second.getX();
+    }
+    
+    public int getY() {
+        return second.getY();
+    }
 }

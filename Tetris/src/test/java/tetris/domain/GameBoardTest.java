@@ -40,7 +40,7 @@ public class GameBoardTest {
     
     @Test
     public void returnTrueWhenTetrominoHitsLeftBorder() {
-        for (int i = 1; i < WIDTH / 2; i++) {
+        for (int i = 0; i < WIDTH / 2; i++) {
             gb.getTetromino().moveLeft();
         }
         assertTrue(gb.hitLeftBorder());
@@ -49,7 +49,7 @@ public class GameBoardTest {
     
     @Test
     public void returnFalseWhenTetrominoDoesNotHitLeftBorder() {
-        for (int i = 3; i < WIDTH / 2; i++){
+        for (int i = 1; i < WIDTH / 2; i++){
             gb.getTetromino().moveLeft();
         }
         assertFalse(gb.hitLeftBorder());
@@ -58,7 +58,7 @@ public class GameBoardTest {
     
     @Test
     public void returnTrueWhenTetrominoHitsRightBorder() {
-        for (int i = 0; i < WIDTH / 2; i++) {
+        for (int i = 2; i < WIDTH / 2; i++) {
             gb.getTetromino().moveRight();
         }
         assertTrue(gb.hitRightBorder());
@@ -67,7 +67,7 @@ public class GameBoardTest {
     
     @Test
     public void returnFalseWhenTetrominoDoesNotHitRightBorder() {
-        for (int i = 2; i < WIDTH / 2; i++){
+        for (int i = 3; i < WIDTH / 2; i++){
             gb.getTetromino().moveRight();
         }
         assertFalse(gb.hitRightBorder());   
