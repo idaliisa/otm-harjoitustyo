@@ -10,12 +10,12 @@ public abstract class Tetromino {
     public int initialX;
     public int initialY;
     public List<Piece> pieces;
-    public int direction;
     
     public Piece first;
     public Piece second;
     public Piece third;
     public Piece fourth;
+    public int direction;
     
 
     public Tetromino(int width) {
@@ -107,16 +107,14 @@ public abstract class Tetromino {
     
     abstract void rotate();
     
+    public void setTetromino(int x1, int y1, int x3, int y3, int x4, int y4) {
+        setPiece(first, x1, y1);
+        setPiece(third, x3, y3);
+        setPiece(fourth, x4, y4);
+    }
+    
     public void setPiece(Piece piece, int x, int y) {
-        piece.setX(getX() + x);
-        piece.setY(getY() + y);
-    }
-    
-    public int getX() {
-        return second.getX();
-    }
-    
-    public int getY() {
-        return second.getY();
+        piece.setX(second.getX() + x);
+        piece.setY(second.getY() + y);
     }
 }

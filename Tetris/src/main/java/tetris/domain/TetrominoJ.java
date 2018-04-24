@@ -21,27 +21,16 @@ public class TetrominoJ extends Tetromino {
     
     public void rotate() {
         if (this.direction == 1) {
-            setPiece(first, 0, -1);
-            setPiece(third, 0, 1);
-            setPiece(fourth, -1, 1);
+            setTetromino(0, -1, 0, 1, -1, 1);
             this.direction = 2;
-        }
-        if (this.direction == 2) {
-            setPiece(first, 1, 0);
-            setPiece(third, -1, 0);
-            setPiece(fourth, -1, -1);
+        } else if (this.direction == 2) {
+            setTetromino(1, 0, -1, 0, -1, -1);
             this.direction = 3;
-        }
-        if (this.direction == 3) {
-            setPiece(first, 0, 1);
-            setPiece(third, 0, -1);
-            setPiece(fourth, 1, -1);
+        } else if (this.direction == 3) {
+            setTetromino(0, 1, 0, -1, 1, -1);
             this.direction = 4;
-        }
-        if (this.direction == 4) {
-            setPiece(first, -1, 0);
-            setPiece(third, 1, 0);
-            setPiece(fourth, 1, 1);
+        } else {
+            setTetromino(-1, 0, 1, 0, 1, 1);
             this.direction = 1;
         }
     }
