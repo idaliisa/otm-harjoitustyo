@@ -1,6 +1,7 @@
 package tetris.ui;
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 import javafx.animation.AnimationTimer;
@@ -12,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -29,11 +29,19 @@ public class TetrisUi extends Application {
     
     @Override
     public void init() throws Exception {
-        Properties properties = new Properties();
-        properties.load(new FileInputStream("config.properties"));
-        String userFile = properties.getProperty("userFile");
-        UserFileDao userFileDao = new UserFileDao(userFile);
-        tetrisService = new TetrisService(userFileDao);
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileInputStream("config.properties"));
+            String userFile = properties.getProperty("userFile");
+            UserFileDao userFileDao = new UserFileDao(userFile);
+            tetrisService = new TetrisService(userFileDao);
+        } catch (Exception e) {
+            File file = new File("users.txt");
+            String userFile = file.getAbsolutePath();
+            UserFileDao userFileDao = new UserFileDao(userFile);
+            tetrisService = new TetrisService(userFileDao);
+        }
+        
     }
     
     @Override
@@ -53,7 +61,7 @@ public class TetrisUi extends Application {
                 startGame(primaryStage);
             } else {
                 message.setText("user does not exist");
-            }
+            }           
         });
         
         createButton.setOnAction(event -> {
@@ -91,11 +99,13 @@ public class TetrisUi extends Application {
     }
     
     public void playTetris(Stage tertiaryStage) {
+        Button startButton = new Button("Start");
+        Label message = new Label();
         Canvas canvas = new Canvas(WIDTH * squareSize, HEIGHT * squareSize);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         GameBoard gb = new GameBoard(WIDTH, HEIGHT);
-        BorderPane pane = new BorderPane();
-        pane.setCenter(canvas);
+        VBox pane = new VBox();
+        pane.getChildren().addAll(startButton, message, canvas);
         Scene tetrisScene = new Scene(pane);
         
         new AnimationTimer() {
@@ -120,7 +130,12 @@ public class TetrisUi extends Application {
                 gb.getPiecesOnBoard().stream().forEach(piece -> {
                     gc.fillRect(piece.getX() * squareSize, piece.getY() * squareSize, squareSize, squareSize);
                 });
-            }
+                
+                if (gb.gameover()) {
+                    message.setText("Gameover");
+                    this.stop();
+                };
+            }           
         }.start();
         
         tetrisScene.setOnKeyPressed(event -> {
@@ -133,6 +148,10 @@ public class TetrisUi extends Application {
             } else if (event.getCode().equals(KeyCode.UP)) {
                 gb.rotateTetromino();
             }
+        });
+        
+        startButton.setOnAction(event -> {
+            playTetris(tertiaryStage);
         });
         
         tertiaryStage.setScene(tetrisScene);

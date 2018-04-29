@@ -89,4 +89,9 @@ public class GameBoardTest {
         assertFalse(gb.rowComplete(0));
     }
     
+    @Test
+    public void gameoverIfPiecesOutsideBorder() {
+        gb.getPiecesOnBoard().add(new Piece(0, -1));
+        assertTrue(gb.gameover());
+    }
 }

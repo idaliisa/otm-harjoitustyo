@@ -21,7 +21,8 @@ public abstract class Tetromino {
     public Tetromino(int width) {
         this.initialX = width / 2;
         this.initialY = 0;
-        this.pieces = new ArrayList<>();     
+        this.pieces = new ArrayList<>();
+        this.direction = 1;
     }
     
     public int getInitialX() {
@@ -116,5 +117,9 @@ public abstract class Tetromino {
     public void setPiece(Piece piece, int x, int y) {
         piece.setX(second.getX() + x);
         piece.setY(second.getY() + y);
+    }
+    
+    public void tulosta() {
+        System.out.println(first.getX()+ "," + first.getY() + "," + second.getX() + "," + second.getY() + "," + third.getX() + "," + third.getY() + "," + fourth.getX() + "," + fourth.getY());
     }
 }

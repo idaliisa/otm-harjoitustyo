@@ -41,14 +41,22 @@ public class GameBoard {
         tetromino = drawRandomTetromino();
     }
     
+    public boolean next() {
+        addTetrominoOnBoard();
+        if (gameover()) {
+            return false;
+        }
+        dropIfRowComplete();
+        newTetromino();
+        return true;
+    }
+    
     public void moveTetrominoDown() {
         tetromino.moveDown();
         if (hitPiecesOnBoard() || hitLowerBorder()) {
             tetromino.moveUp();
-            addTetrominoOnBoard();
-            dropIfRowComplete();
-            newTetromino();
-        }  
+            next();
+        }
     }
     
     public void moveTetrominoRight() {
@@ -144,6 +152,15 @@ public class GameBoard {
             tetromino.rotate();
             tetromino.rotate();
         }
+    }
+    
+    public boolean gameover() {
+        for (int i = 0; i < piecesOnBoard.size(); i++) {
+            if (piecesOnBoard.get(i).getY() == -1) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
