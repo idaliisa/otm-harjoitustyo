@@ -1,7 +1,9 @@
 
 package tetris.domain;
 
-
+/**
+ * This class describes the user or the player
+ */
 public class User {
     private String username;
 
@@ -13,6 +15,12 @@ public class User {
         return username;
     }
 
+    /**
+     * This method does check whether a user as a parameter and whether these 
+     * users have the same username
+     * @param object a piece
+     * @return true if these users have the same username, otherwise false
+     */
     @Override
     public boolean equals(Object object) {
         if (object == null) {

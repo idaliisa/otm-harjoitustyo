@@ -4,7 +4,10 @@ package tetris.domain;
 
 import tetris.dao.UserDao;
 
-
+/**
+ * 
+ * This class is about the user login logic
+ */
 public class TetrisService {
     private UserDao userDao;
     private User loggedInUser;
@@ -13,6 +16,12 @@ public class TetrisService {
         this.userDao = userDao;
     }
     
+    /**
+     * This method creates a new user if the username does not exist before and 
+     * if the username has at least five characters
+     * @param username username
+     * @return true, if a new user is created, otherwise false
+     */
     public boolean createUser(String username) {
         if (!isAtLeastFiveCharacters(username)) {
             return false;
@@ -29,10 +38,20 @@ public class TetrisService {
         }
     }
     
+    /**
+     * This method tells if the username has at least five characters
+     * @param username username
+     * @return true, if the username has at least five characters, otherwise false
+     */
     public boolean isAtLeastFiveCharacters(String username) {
         return username.length() >= 5;
     }
     
+    /**
+     * This method sets the user loggedin if the username already exists
+     * @param username username
+     * @return true, if the username does exists, otherwise false
+     */
     public boolean login(String username) {
         User user = userDao.findByUsername(username);
         if (user == null) {
@@ -46,6 +65,9 @@ public class TetrisService {
         return loggedInUser;
     }
     
+    /**
+     * This method sets loggedin user null
+     */
     public void logout() {
         this.loggedInUser = null;
     }

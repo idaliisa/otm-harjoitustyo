@@ -1,6 +1,10 @@
 
 package tetris.domain;
 
+/**
+ * This class describes the smallest building block of a tetromino
+ */
+
 public class Piece {
     private int x;
     private int y;
@@ -26,6 +30,11 @@ public class Piece {
         this.y = y;
     }
     
+    /**
+     * This method does check whether the pieces have the same x- and y-coordinates
+     * @param piece a piece
+     * @return true if the piece overlaps another one, otherwise false
+     */
     public boolean hit(Piece piece) {
         if (piece.getX() == this.getX() && piece.getY() == this.getY()) {
             return true;
@@ -34,6 +43,12 @@ public class Piece {
         }
     }
     
+    /**
+     * This method does check whether a piece as a parameter and whether these 
+     * pieces have the same x- and y-coordinates
+     * @param object object
+     * @return true if a piece overlaps another piece, otherwise false
+     */
     @Override
     public boolean equals(Object object) {
         if (object == null) {
