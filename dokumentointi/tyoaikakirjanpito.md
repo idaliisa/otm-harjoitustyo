@@ -14,4 +14,8 @@
 | 22.4  | 5             | rivin voi pudottaa, tetrominoa ei voi liikuuttaa jos se osuu toiseen tetrominoon, tetrominon kääntäminen aloitettu |
 | 23.4  | 3.5           | testaus, refaktorointi |
 | 24.4  | 6             | testaus, refaktorointi, checkstyle, sekvenssikaavio |
-| yht   | 51            |   |
+| 27.4  | 3             | tetrominon kääntäminen, uuden pelin aloitus |
+| 28.4  | 1             | käyttöliittymän päivitys, testaus |
+| 29.4  | 5             | gameover toimii, jar-tidoston generointi toimii, testaus, refaktorointi |
+| 1.5   | 5             | javadoc, arkkitehruuri, käyttöohje |
+| yht   | 65            |   |
