@@ -1,4 +1,5 @@
 # OTM harjoitustyö - Tetris
+Tässä desktop-sovelluksessa kirjautuneet käyttäjät voivat pelata tetristä.
 ## Dokumentointi
 #### [Vaatimusmäärittely](https://github.com/idaliisa/otm-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.md)
 #### [Arkkitehtuuri](https://github.com/idaliisa/otm-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
