@@ -8,6 +8,7 @@ public class TetrominoT extends Tetromino {
 
     public TetrominoT(int width) {
         super(width);
+        initTetrominoAboveCanvas(-2);
         this.first = new Piece(initialX - 1, initialY);
         this.second = new Piece(initialX, initialY);
         this.third = new Piece(initialX + 1, initialY);

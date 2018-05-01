@@ -33,6 +33,13 @@ public class GameBoard {
         return piecesOnBoard;
     }
     
+    public List<Piece> getAllPiecesOnBoard() {
+        List<Piece> pieces = new ArrayList<>();
+        getPiecesOnBoard().stream().forEach(p -> pieces.add(p));
+        getTetromino().getPieces().stream().forEach(p -> pieces.add(p));
+        return pieces;
+    } 
+    
     public void addTetrominoOnBoard() {
         tetromino.getPieces().stream().forEach(piece -> piecesOnBoard.add(piece));
     }
@@ -41,22 +48,16 @@ public class GameBoard {
         tetromino = drawRandomTetromino();
     }
     
-    public boolean next() {
-        addTetrominoOnBoard();
-        if (gameover()) {
-            return false;
-        }
-        dropIfRowComplete();
-        newTetromino();
-        return true;
-    }
-    
     public void moveTetrominoDown() {
         tetromino.moveDown();
         if (hitPiecesOnBoard() || hitLowerBorder()) {
             tetromino.moveUp();
-            next();
-        }
+            addTetrominoOnBoard();
+            dropIfRowComplete();
+            if (!gameover()) {
+                newTetromino();
+            }
+        }        
     }
     
     public void moveTetrominoRight() {

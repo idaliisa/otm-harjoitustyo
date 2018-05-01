@@ -12,6 +12,7 @@ public class TetrominoLTest {
     
     TetrominoL tetromino;
     int x;
+    int y;
     
     public TetrominoLTest() {
     }
@@ -21,6 +22,7 @@ public class TetrominoLTest {
     public void setUp() {
         tetromino = new TetrominoL(TetrisUi.WIDTH);
         x = TetrisUi.WIDTH / 2;
+        y = -2;
     }
     
     
@@ -28,10 +30,10 @@ public class TetrominoLTest {
     @Test
     public void movesDownCorrectly() {
         tetromino.moveDown();
-        assertFalse(tetromino.hitY(0));
-        assertTrue(tetromino.hitY(1));
-        assertTrue(tetromino.hitY(2));
-        assertFalse(tetromino.hitY(3));
+        assertFalse(tetromino.hitY(y));
+        assertTrue(tetromino.hitY(y + 1));
+        assertTrue(tetromino.hitY(y + 2));
+        assertFalse(tetromino.hitY(y + 3));
     }
     
     @Test
@@ -59,10 +61,10 @@ public class TetrominoLTest {
         assertTrue(tetromino.hitX(x - 1));
         assertTrue(tetromino.hitX(x));
         assertFalse(tetromino.hitX(x + 1));
-        assertFalse(tetromino.hitY(- 1));
-        assertTrue(tetromino.hitY(0));
-        assertTrue(tetromino.hitY(2));
-        assertFalse(tetromino.hitY(3));
+        assertFalse(tetromino.hitY(y - 1));
+        assertTrue(tetromino.hitY(y));
+        assertTrue(tetromino.hitY(y + 2));
+        assertFalse(tetromino.hitY(y + 3));
     }
     
     @Test
@@ -73,10 +75,10 @@ public class TetrominoLTest {
         assertTrue(tetromino.hitX(x - 2));
         assertTrue(tetromino.hitX(x));
         assertFalse(tetromino.hitX(x + 1));
-        assertFalse(tetromino.hitY(- 2));
-        assertTrue(tetromino.hitY(- 1));
-        assertTrue(tetromino.hitY(0));
-        assertFalse(tetromino.hitY(1));
+        assertFalse(tetromino.hitY(y - 2));
+        assertTrue(tetromino.hitY(y - 1));
+        assertTrue(tetromino.hitY(y));
+        assertFalse(tetromino.hitY(y + 1));
     }
     
     @Test
@@ -88,10 +90,10 @@ public class TetrominoLTest {
         assertTrue(tetromino.hitX(x));
         assertTrue(tetromino.hitX(x + 1));
         assertFalse(tetromino.hitX(x + 2));
-        assertFalse(tetromino.hitY(- 3));
-        assertTrue(tetromino.hitY(- 2));
-        assertTrue(tetromino.hitY(0));
-        assertFalse(tetromino.hitY(1));
+        assertFalse(tetromino.hitY(y - 3));
+        assertTrue(tetromino.hitY(y - 2));
+        assertTrue(tetromino.hitY(y));
+        assertFalse(tetromino.hitY(y + 1));
     }
     
     @Test
@@ -104,9 +106,9 @@ public class TetrominoLTest {
         assertTrue(tetromino.hitX(x));
         assertTrue(tetromino.hitX(x + 2));
         assertFalse(tetromino.hitX(x + 3));
-        assertFalse(tetromino.hitY(- 1));
-        assertTrue(tetromino.hitY(0));
-        assertTrue(tetromino.hitY(1));
-        assertFalse(tetromino.hitY(2));
+        assertFalse(tetromino.hitY(y - 1));
+        assertTrue(tetromino.hitY(y));
+        assertTrue(tetromino.hitY(y + 1));
+        assertFalse(tetromino.hitY(y + 2));
     }
 }

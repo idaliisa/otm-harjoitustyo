@@ -29,7 +29,7 @@ public class TetrisUi extends Application {
     
     @Override
     public void init() throws Exception {
-        try {
+        try {            
             Properties properties = new Properties();
             properties.load(new FileInputStream("config.properties"));
             String userFile = properties.getProperty("userFile");
@@ -57,7 +57,7 @@ public class TetrisUi extends Application {
         
         loginButton.setOnAction(event -> {
             String username = usernameInput.getText();
-            if ( tetrisService.login(username) ){
+            if (tetrisService.login(username) ){
                 startGame(primaryStage);
             } else {
                 message.setText("user does not exist");
@@ -121,15 +121,11 @@ public class TetrisUi extends Application {
                 gc.fillRect(0, 0, WIDTH * squareSize, HEIGHT * squareSize);
                 
                 gc.setFill(Color.AQUA);
-                gb.getTetromino().getPieces().stream().forEach(piece -> {
+                gb.getAllPiecesOnBoard().stream().forEach(piece -> {
                     gc.fillRect(piece.getX() * squareSize, piece.getY() * squareSize, squareSize, squareSize);
                 });
-                gb.moveTetrominoDown();
                 
-                gc.setFill(Color.AQUA);
-                gb.getPiecesOnBoard().stream().forEach(piece -> {
-                    gc.fillRect(piece.getX() * squareSize, piece.getY() * squareSize, squareSize, squareSize);
-                });
+                gb.moveTetrominoDown();
                 
                 if (gb.gameover()) {
                     message.setText("Gameover");

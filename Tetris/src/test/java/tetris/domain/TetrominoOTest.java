@@ -11,6 +11,7 @@ import tetris.ui.TetrisUi;
 public class TetrominoOTest {
     TetrominoO tetromino;
     int x;
+    int y;
     
     public TetrominoOTest() {
     }
@@ -20,6 +21,7 @@ public class TetrominoOTest {
     public void setUp() {
         tetromino = new TetrominoO(TetrisUi.WIDTH);
         x = TetrisUi.WIDTH / 2;
+        y = -2;
     }
     
     @Test
@@ -34,21 +36,21 @@ public class TetrominoOTest {
     
     @Test
     public void returnTrueWhenTetrominoHitY() {
-        assertTrue(tetromino.hitY(0));
+        assertTrue(tetromino.hitY(y));
     }
     
     @Test
     public void returnFalseWhenTetrominoDoesNotHitY() {
-        assertFalse(tetromino.hitY(3));
+        assertFalse(tetromino.hitY(y + 3));
     }
     
     @Test
     public void movesDownCorrectly() {
         tetromino.moveDown();
-        assertFalse(tetromino.hitY(0));
-        assertTrue(tetromino.hitY(1));
-        assertTrue(tetromino.hitY(2));
-        assertFalse(tetromino.hitY(3));    
+        assertFalse(tetromino.hitY(y));
+        assertTrue(tetromino.hitY(y + 1));
+        assertTrue(tetromino.hitY(y + 2));
+        assertFalse(tetromino.hitY(y + 3));    
     }
     
     @Test
@@ -76,9 +78,9 @@ public class TetrominoOTest {
         assertTrue(tetromino.hitX(x));
         assertTrue(tetromino.hitX(x + 1));
         assertFalse(tetromino.hitX(x + 2));
-        assertFalse(tetromino.hitY(- 1));
-        assertTrue(tetromino.hitY(0));
-        assertTrue(tetromino.hitY(1));
-        assertFalse(tetromino.hitY(2));
+        assertFalse(tetromino.hitY(y - 1));
+        assertTrue(tetromino.hitY(y));
+        assertTrue(tetromino.hitY(y + 1));
+        assertFalse(tetromino.hitY(y + 2));
     }
 }

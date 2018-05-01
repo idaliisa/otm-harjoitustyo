@@ -119,7 +119,7 @@ public abstract class Tetromino {
         piece.setY(second.getY() + y);
     }
     
-    public void tulosta() {
-        System.out.println(first.getX()+ "," + first.getY() + "," + second.getX() + "," + second.getY() + "," + third.getX() + "," + third.getY() + "," + fourth.getX() + "," + fourth.getY());
+    public void initTetrominoAboveCanvas(int initialY) {
+        this.initialY = initialY;
     }
 }

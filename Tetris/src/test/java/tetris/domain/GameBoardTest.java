@@ -22,7 +22,7 @@ public class GameBoardTest {
     
     @Test
     public void returnTrueWhenTetrominoHitsLowerBorder() {
-        for (int i = 0; i < HEIGHT; i++) {
+        for (int i = 0; i <= HEIGHT; i++) {
             gb.getTetromino().moveDown();
         }
         assertTrue(gb.hitLowerBorder());
@@ -31,7 +31,7 @@ public class GameBoardTest {
     
     @Test
     public void returnFalseWhenTetrominoDoesNotHitLowerBorder() {
-        for (int i = 1; i < HEIGHT - 1; i++){
+        for (int i = 0; i < HEIGHT; i++){
             gb.getTetromino().moveDown();
         }
         assertFalse(gb.hitLowerBorder());
@@ -90,8 +90,20 @@ public class GameBoardTest {
     }
     
     @Test
-    public void gameoverIfPiecesOutsideBorder() {
-        gb.getPiecesOnBoard().add(new Piece(0, -1));
+    public void gameoverIfPiecesAboveCanvas() {
+        gb.getPiecesOnBoard().add(new Piece(WIDTH / 2, 0));
+        gb.moveTetrominoDown();
         assertTrue(gb.gameover());
+    }
+    
+
+    
+    @Test
+    public void rowsDrop() {
+        gb.getPiecesOnBoard().add(new Piece(WIDTH - 1,0));
+        assertTrue(gb.getPiecesOnBoard().contains(new Piece(WIDTH - 1,0)));
+        gb.dropUpperRows(1);
+        assertFalse(gb.getPiecesOnBoard().contains(new Piece(WIDTH - 1,0)));
+        assertTrue(gb.getPiecesOnBoard().contains(new Piece(WIDTH - 1,1)));
     }
 }
