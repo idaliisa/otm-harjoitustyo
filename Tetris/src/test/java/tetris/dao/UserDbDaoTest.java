@@ -3,6 +3,8 @@ package tetris.dao;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -12,29 +14,38 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
+import tetris.domain.Database;
 import tetris.domain.User;
 
 
-public class UserFileDaoTest {
-    @Rule
-    public TemporaryFolder temporaryFolder = new TemporaryFolder();
+public class UserDbDaoTest {
+    
     File userFile;
     UserDao userDao;
     
-    
     @Before
     public void setUp() throws Exception {
-        userFile = temporaryFolder.newFile("userTest.txt");
         
-        try (FileWriter fileWriter = new FileWriter(userFile.getAbsolutePath())){
-            fileWriter.write("user name\n");
-        }
+        userFile = new File("userTest.db");
+        Database db = new Database("jdbc:sqlite:userTest.db");
+        userDao = new UserDbDao(db);
         
-        userDao = new UserFileDao(userFile.getAbsolutePath());
+        try {
+            Connection con = db.getConnection();
+            PreparedStatement stmt = con.prepareStatement(
+                "INSERT INTO User (username) VALUES (?)");
+            stmt.setString(1, "user name");
+            stmt.executeUpdate();
+            stmt.close();
+            con.close(); 
+        } catch (Exception e) {
+            throw new AbstractMethodError("User not created: " + e.getMessage());
+        } 
     }
+
     
     @Test
-    public void usersAreCorrectlyReadFromFile() {
+    public void usersAreCorrectlyReadFromDatabase() {
         List<User> users = userDao.getAllUsers();
         User user = users.get(0);
         assertEquals("user name", user.getUsername());
@@ -59,10 +70,9 @@ public class UserFileDaoTest {
         assertEquals("new user", user.getUsername());
     }
     
-    
     @After
     public void tearDown() {
         userFile.delete();
     }
-
+    
 }

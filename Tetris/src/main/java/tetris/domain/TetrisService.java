@@ -34,6 +34,7 @@ public class TetrisService {
             userDao.createUser(user);
             return true;
         } catch (Exception e) {
+            System.out.println("user not created: " + e.getMessage());
             return false;
         }
     }

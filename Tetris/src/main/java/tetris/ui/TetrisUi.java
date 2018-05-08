@@ -16,7 +16,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import tetris.dao.UserDbDao;
 import tetris.dao.UserFileDao;
+import tetris.domain.Database;
 import tetris.domain.GameBoard;
 import tetris.domain.TetrisService;
 
@@ -29,26 +31,25 @@ public class TetrisUi extends Application {
     
     @Override
     public void init() throws Exception {
-        try {            
-            Properties properties = new Properties();
-            properties.load(new FileInputStream("config.properties"));
-            String userFile = properties.getProperty("userFile");
-            UserFileDao userFileDao = new UserFileDao(userFile);
-            tetrisService = new TetrisService(userFileDao);
+        try {
+            //Database db = new Database("jdbc:sqlite:users.db");
+            UserDbDao userDbDao = new UserDbDao(db);
+            tetrisService = new TetrisService(userDbDao);
         } catch (Exception e) {
             File file = new File("users.txt");
             String userFile = file.getAbsolutePath();
             UserFileDao userFileDao = new UserFileDao(userFile);
             tetrisService = new TetrisService(userFileDao);
-        }
-        
+        }       
     }
     
     @Override
     public void start(Stage primaryStage) throws Exception {
         VBox loginPane = new VBox(10);
+        loginPane.setPrefSize(400, 200);
         Label message = new Label();
         TextField usernameInput = new TextField();
+        usernameInput.setMaxWidth(100);
         Button loginButton = new Button("login");
         Button createButton = new Button("new user");
         
@@ -85,6 +86,7 @@ public class TetrisUi extends Application {
     
     public void startGame(Stage secondaryStage) {
         VBox startPane = new VBox(10);
+        startPane.setPrefSize(400, 200);
         Button startButton = new Button("Start");
         
         startPane.getChildren().add(startButton);
