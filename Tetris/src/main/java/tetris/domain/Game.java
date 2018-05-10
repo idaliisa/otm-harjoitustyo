@@ -10,14 +10,14 @@ import java.util.stream.Collectors;
  * This class is about the Tetris game logic
  * 
  */
-public class GameBoard {
+public class Game {
     
     private int width;
     private int height;
     private Tetromino tetromino;
     private List<Piece> piecesOnBoard;
 
-    public GameBoard(int width, int height) {
+    public Game(int width, int height) {
         this.width = width;
         this.height = height;
         this.tetromino = drawRandomTetromino();

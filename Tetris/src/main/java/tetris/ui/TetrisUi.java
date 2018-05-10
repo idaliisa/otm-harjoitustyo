@@ -1,164 +1,91 @@
 package tetris.ui;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.Properties;
-import javafx.animation.AnimationTimer;
+
 import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import tetris.dao.UserDbDao;
-import tetris.dao.UserFileDao;
 import tetris.domain.Database;
-import tetris.domain.GameBoard;
+import tetris.domain.Game;
 import tetris.domain.TetrisService;
 
 
 public class TetrisUi extends Application {
     public static int WIDTH = 12;
     public static int HEIGHT = 18;
-    private double squareSize = 30.0;
+    public static double squareSize = 30.0;
+    private Stage stage;
     private TetrisService tetrisService;
+    private Scene loginAndNewUserScene;
+    private Scene startGameScene;
+    private Scene playTetrisScene;
     
+    
+    @FXML
+    public Canvas canvas = new Canvas(WIDTH * squareSize, HEIGHT * squareSize);
+    public GraphicsContext gc = canvas.getGraphicsContext2D();
+    
+    
+        
     @Override
     public void init() throws Exception {
         try {
-            //Database db = new Database("jdbc:sqlite:users.db");
+            Database db = new Database("jdbc:sqlite:users.db");
             UserDbDao userDbDao = new UserDbDao(db);
-            tetrisService = new TetrisService(userDbDao);
+            tetrisService = new TetrisService(userDbDao, new Game(WIDTH, HEIGHT));
         } catch (Exception e) {
-            File file = new File("users.txt");
-            String userFile = file.getAbsolutePath();
-            UserFileDao userFileDao = new UserFileDao(userFile);
-            tetrisService = new TetrisService(userFileDao);
-        }       
+            System.out.println("SqLite not availabe: " + e.getMessage());
+        }
+        
+        
+        FXMLLoader loginAndNewUserLoader = new FXMLLoader(getClass().getResource("/fxml/LoginAndNewUserScene.fxml"));
+        Parent loginAndNewUserPane = loginAndNewUserLoader.load();
+        LoginAndNewUserSceneController loginAndNewUserSceneController = loginAndNewUserLoader.getController();
+        loginAndNewUserSceneController.setTetrisService(tetrisService);
+        loginAndNewUserSceneController.setApplication(this);
+        loginAndNewUserScene = new Scene(loginAndNewUserPane);
+        
+           
+        FXMLLoader playTetrisLoader = new FXMLLoader(getClass().getResource("/fxml/PlayTetrisScene.fxml"));
+        Parent playTetrisPane = playTetrisLoader.load();
+        PlayTetrisSceneController playTetrisSceneController = playTetrisLoader.getController();
+        playTetrisSceneController.setTetrisService(tetrisService);
+        playTetrisSceneController.setApplication(this);
+        playTetrisScene = new Scene(playTetrisPane); 
     }
+    
+    
     
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        VBox loginPane = new VBox(10);
-        loginPane.setPrefSize(400, 200);
-        Label message = new Label();
-        TextField usernameInput = new TextField();
-        usernameInput.setMaxWidth(100);
-        Button loginButton = new Button("login");
-        Button createButton = new Button("new user");
-        
-        loginPane.getChildren().addAll(message, usernameInput, loginButton, createButton);
-        Scene loginScene = new Scene(loginPane);
-        
-        loginButton.setOnAction(event -> {
-            String username = usernameInput.getText();
-            if (tetrisService.login(username) ){
-                startGame(primaryStage);
-            } else {
-                message.setText("user does not exist");
-            }           
-        });
-        
-        createButton.setOnAction(event -> {
-            String username = usernameInput.getText();
-            if (!tetrisService.isAtLeastFiveCharacters(username)) {
-                message.setText("username must have at least five characters, please try again");
-            }
-            else if (tetrisService.createUser(username)) {
-                message.setText("user created, please login in");
-                usernameInput.setText("");
-            } else {
-                message.setText("username already exists, please log in or create a new user");
-                usernameInput.setText("");
-            }
-        });
-        
-        primaryStage.setScene(loginScene);
-        primaryStage.show();    
+    public void start(Stage stage) throws Exception {
+        this.stage = stage;
+        stage.setTitle("Tetris");
+        setLoginAndNewUserScene();
+        stage.show();
     }
     
     
-    public void startGame(Stage secondaryStage) {
-        VBox startPane = new VBox(10);
-        startPane.setPrefSize(400, 200);
-        Button startButton = new Button("Start");
-        
-        startPane.getChildren().add(startButton);
-        Scene startScene = new Scene(startPane);
-        
-        startButton.setOnAction(event -> {
-            playTetris(secondaryStage);  
-        });
-        
-        secondaryStage.setScene(startScene);
-        secondaryStage.show();
+    
+    public void setLoginAndNewUserScene() {
+        stage.setScene(loginAndNewUserScene);
     }
     
-    public void playTetris(Stage tertiaryStage) {
-        Button startButton = new Button("Start");
-        Label message = new Label();
-        Canvas canvas = new Canvas(WIDTH * squareSize, HEIGHT * squareSize);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        GameBoard gb = new GameBoard(WIDTH, HEIGHT);
-        VBox pane = new VBox();
-        pane.getChildren().addAll(startButton, message, canvas);
-        Scene tetrisScene = new Scene(pane);
-        
-        new AnimationTimer() {
-            private long previous;
-            @Override
-            public void handle(long now) {                
-                if (now - previous < 400_000_000) {
-                    return;
-                }
-                previous = now;
-                
-                gc.setFill(Color.BLACK);
-                gc.fillRect(0, 0, WIDTH * squareSize, HEIGHT * squareSize);
-                
-                gc.setFill(Color.AQUA);
-                gb.getAllPiecesOnBoard().stream().forEach(piece -> {
-                    gc.fillRect(piece.getX() * squareSize, piece.getY() * squareSize, squareSize, squareSize);
-                });
-                
-                gb.moveTetrominoDown();
-                
-                if (gb.gameover()) {
-                    message.setText("Gameover");
-                    this.stop();
-                };
-            }           
-        }.start();
-        
-        tetrisScene.setOnKeyPressed(event -> {
-            if (event.getCode().equals(KeyCode.LEFT)) {
-                gb.moveTetrominoLeft();
-            } else if (event.getCode().equals(KeyCode.RIGHT)) {
-                gb.moveTetrominoRight();
-            } else if (event.getCode().equals(KeyCode.DOWN)) {
-                gb.moveTetrominoDown();
-            } else if (event.getCode().equals(KeyCode.UP)) {
-                gb.rotateTetromino();
-            }
-        });
-        
-        startButton.setOnAction(event -> {
-            playTetris(tertiaryStage);
-        });
-        
-        tertiaryStage.setScene(tetrisScene);
-        tertiaryStage.show();
+    
+    
+    public void setPlayTetrisScene() {
+        stage.setScene(playTetrisScene);
     }
+    
     
     
     public static void main(String[] args) {
         launch(args);
-        System.out.println("Hello world");
     }  
+    
 }

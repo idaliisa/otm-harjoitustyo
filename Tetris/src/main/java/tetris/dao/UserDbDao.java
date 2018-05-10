@@ -15,6 +15,8 @@ public class UserDbDao implements UserDao {
     
     private Database database;
 
+    
+    
     public UserDbDao(Database db) {
         this.database = db;
         
@@ -35,7 +37,7 @@ public class UserDbDao implements UserDao {
     }
     
     
-
+    
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
@@ -57,6 +59,8 @@ public class UserDbDao implements UserDao {
             
     }
 
+    
+    
     @Override
     public void createUser(User user) {
         
@@ -73,6 +77,8 @@ public class UserDbDao implements UserDao {
         }  
     }
 
+    
+    
     @Override
     public User findByUsername(String username) {
         try {

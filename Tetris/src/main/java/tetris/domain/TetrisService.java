@@ -9,12 +9,20 @@ import tetris.dao.UserDao;
  * This class is about the user login logic
  */
 public class TetrisService {
+    
+    
     private UserDao userDao;
     private User loggedInUser;
+    private Game game;
 
-    public TetrisService(UserDao userDao) {
+    
+    
+    public TetrisService(UserDao userDao, Game game) {
         this.userDao = userDao;
+        this.game = game;
     }
+    
+    
     
     /**
      * This method creates a new user if the username does not exist before and 
@@ -39,6 +47,8 @@ public class TetrisService {
         }
     }
     
+    
+    
     /**
      * This method tells if the username has at least five characters
      * @param username username
@@ -47,6 +57,8 @@ public class TetrisService {
     public boolean isAtLeastFiveCharacters(String username) {
         return username.length() >= 5;
     }
+    
+    
     
     /**
      * This method sets the user loggedin if the username already exists
@@ -62,15 +74,22 @@ public class TetrisService {
         return true;
     }
 
+    
+    
     public User getLoggedInUser() {
         return loggedInUser;
     }
     
-    /**
-     * This method sets loggedin user null
-     */
-    public void logout() {
-        this.loggedInUser = null;
+ 
+    
+    public Game getGame() {
+        return game;
     }
+
+    
+    
+    public void setGame(Game game) {
+        this.game = game;
+    }    
            
 }

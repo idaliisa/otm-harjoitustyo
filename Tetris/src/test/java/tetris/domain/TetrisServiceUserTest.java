@@ -14,7 +14,7 @@ public class TetrisServiceUserTest {
     @Before
     public void setUp() {
         fakeUserDao = new FakeUserDao();
-        tetrisService = new TetrisService(fakeUserDao);
+        tetrisService = new TetrisService(fakeUserDao, null);
     }
     
     @Test
@@ -51,13 +51,6 @@ public class TetrisServiceUserTest {
     public void loggedInUserIsCorrect() {
         tetrisService.login("test user");
         assertEquals("test user", tetrisService.getLoggedInUser().getUsername());
-    }
-    
-    @Test
-    public void noUserLoggedIn() {
-        tetrisService.login("test user");
-        tetrisService.logout();
-        assertEquals(null, tetrisService.getLoggedInUser());
     }
     
     

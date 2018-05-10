@@ -8,15 +8,15 @@ import static tetris.ui.TetrisUi.HEIGHT;
 import static tetris.ui.TetrisUi.WIDTH;
 
 
-public class GameBoardTest {
-    GameBoard gb;
+public class GameTest {
+    Game gb;
     
-    public GameBoardTest() {
+    public GameTest() {
     }
     
     @Before
     public void setUp() {
-        gb = new GameBoard(WIDTH, HEIGHT);
+        gb = new Game(WIDTH, HEIGHT);
         gb.setTetromino(new TetrominoI(WIDTH));    
     }
     

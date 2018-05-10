@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleOnKeyPressed" prefHeight="540.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tetris.ui.PlayTetrisSceneController">
+   <children>
+        <Canvas fx:id="canvas" height="540.0" width="360.0" />
+        <Button fx:id="startButton" layoutX="438.0" layoutY="431.0" onAction="#handleStartGame" text="Start" />      
+   </children>
+</AnchorPane>
