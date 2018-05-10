@@ -2,6 +2,8 @@ package tetris.ui;
 
 
 
+import tetris.ui.controller.PlayTetrisSceneController;
+import tetris.ui.controller.LoginAndNewUserSceneController;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +13,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import tetris.dao.UserDbDao;
-import tetris.domain.Database;
-import tetris.domain.Game;
-import tetris.domain.TetrisService;
+import tetris.dao.Database;
+import tetris.logics.game.Game;
+import tetris.logics.TetrisService;
 
 
 public class TetrisUi extends Application {

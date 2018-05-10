@@ -2,7 +2,7 @@
 package tetris.dao;
 
 import java.util.List;
-import tetris.domain.User;
+import tetris.logics.user.User;
 
 
 public interface UserDao {

@@ -7,8 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import tetris.domain.Database;
-import tetris.domain.User;
+import tetris.logics.user.User;
 
 
 public class UserDbDao implements UserDao {

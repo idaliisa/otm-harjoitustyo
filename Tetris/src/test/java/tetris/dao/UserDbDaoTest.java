@@ -14,8 +14,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
-import tetris.domain.Database;
-import tetris.domain.User;
+import tetris.logics.user.User;
 
 
 public class UserDbDaoTest {
