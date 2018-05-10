@@ -42,6 +42,14 @@ public class GameTest {
     }
     
     @Test
+    public void tetrominoMovesCorrecltyDown() {
+        for (int i = 0; i <= HEIGHT; i++) {
+            gb.moveTetrominoDown();
+        }
+        assertFalse(gb.hitLowerBorder());
+    }
+    
+    @Test
     public void returnTrueWhenTetrominoHitsLeftBorder() {
         for (int i = 0; i < WIDTH / 2; i++) {
             gb.getTetromino().moveLeft();
@@ -60,6 +68,14 @@ public class GameTest {
     }
     
     @Test
+    public void tetrominoMovesCorrectlyLeft() {
+        for (int i = 0; i < WIDTH / 2; i++) {
+            gb.moveTetrominoRight();
+        }
+        assertFalse(gb.hitLeftBorder());
+    }
+    
+    @Test
     public void returnTrueWhenTetrominoHitsRightBorder() {
         for (int i = 2; i < WIDTH / 2; i++) {
             gb.getTetromino().moveRight();
@@ -72,6 +88,14 @@ public class GameTest {
     public void returnFalseWhenTetrominoDoesNotHitRightBorder() {
         for (int i = 3; i < WIDTH / 2; i++){
             gb.getTetromino().moveRight();
+        }
+        assertFalse(gb.hitRightBorder());   
+    }
+    
+    @Test
+    public void tetrominoMovesCorrectlyRight() {
+        for (int i = 2; i < WIDTH / 2; i++){
+            gb.moveTetrominoRight();
         }
         assertFalse(gb.hitRightBorder());   
     }
@@ -108,5 +132,35 @@ public class GameTest {
         gb.dropUpperRows(1);
         assertFalse(gb.getPiecesOnBoard().contains(new Piece(WIDTH - 1,0)));
         assertTrue(gb.getPiecesOnBoard().contains(new Piece(WIDTH - 1,1)));
+    }
+    
+    @Test
+    public void rowsDropCorrecltyWhenGotComplete() {        
+        for (int i = 2; i < WIDTH / 2; i++){
+            gb.moveTetrominoRight();
+        }
+        for (int i = 0; i <= HEIGHT; i++) {
+            gb.moveTetrominoDown();
+        }
+        gb.moveTetrominoLeft();
+        for (int i = 0; i <= HEIGHT; i++) {
+            gb.moveTetrominoDown();
+        }
+        gb.moveTetrominoLeft();
+        for (int i = 0; i <= HEIGHT; i++) {
+            gb.moveTetrominoDown();
+        }
+        for (int i = 2; i < WIDTH / 2; i++){
+            gb.moveTetrominoRight();
+        }
+        for (int i = 0; i <= HEIGHT; i++) {
+            gb.moveTetrominoDown();
+        }
+        assertFalse(gb.rowComplete(HEIGHT -1));
+        assertTrue(gb.getPiecesOnBoard().contains(new Piece(WIDTH / 2,HEIGHT -1)));
+        assertFalse(gb.getPiecesOnBoard().contains(new Piece(1, HEIGHT -1)));
+        
+        
+        
     }
 }

@@ -56,5 +56,12 @@ public class TetrisServiceUserTest {
         assertEquals("test user", tetrisService.getLoggedInUser().getUsername());
     }
     
+    @Test
+    public void userNotCreatedIfLessThanFiveCharacters() {
+        assertFalse(tetrisService.createUser("test"));
+    }
+    
+    
+    
     
 }
