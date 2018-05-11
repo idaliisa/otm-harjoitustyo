@@ -1,6 +1,7 @@
 # Arkkitehtuurikuvaus
 
 ## Rakenne
+
 Ohjelman pakkausrakenne on seuraava:
 <img src= "">
 - _tetris.ui_: vastaa käyttöliittymästä
@@ -23,13 +24,23 @@ Käyttöliittymä on pyritty eriytettämään sovelluslogiikasta siten, että k�
 Pelinäkymä päivittyy AnimationTimer-olion kutsuessa _getAllPiecesOnBoard()_-metodia.
 
 
+Ohjelma noudattaa kolmitasoista kerrosarkkitehtuuria, jossa pakkausrakenne on seuraava
+- _tetris.ui_: käyttöliittymäluokka
+- _tetris.domain_: kirjautumisen ja pelaamisen loogisesta toteutuksest vastaavat luokat
+- _tetris.dao_: tietojen tallennuksesta vastaavat luokat
+
+
 ## Sovelluslogiikka
 
 Luokat [TetrisService](https://github.com/idaliisa/otm-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/TetrisService.java) ja [Game](https://github.com/idaliisa/otm-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/GameBoard.java) tarjoavat metodit käyttöliittymän toiminnoille. _TetrisServicen_ kautta hoidetaan järjestelmään kirjautuminen ja _Game_ tarjoaa metodit Tetriksen pelaamiseen.
 
+
 Luokka [User](https://github.com/idaliisa/otm-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/User.java) kuvaa käyttäjää ja muodostaa loogisen datamallin kirjautumisominaisuudelle. _TetrisService_ pääsee käyttäjiin käsiksi [UserDao](https://github.com/idaliisa/otm-harjoitustyo/blob/master/Tetris/src/main/java/tetris/dao/UserDao.java)-rajapinnan toteuttavan luokan [UserDbDao](https://github.com/idaliisa/otm-harjoitustyo/blob/master/Tetris/src/main/java/tetris/dao/UserFileDao.java) kautta. Käyttäjätietoja käsitellään tietokannassa, joten _UserDbDao_ käyttää [Database]()-oliota.
 
 Luokat [Tetromino](https://github.com/idaliisa/otm-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Tetromino.java) ja [Piece](https://github.com/idaliisa/otm-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Piece.java) kuvaavat pelin kannalta oleellisia yksiköitä. _Tetromino_ on abstrakti luokka, josta on toteutettu perimällä seitsemän erimuotoista tetrominoa. _Tetrominot_ on toteutettu luokan _Piece_ avulla. _Game_ pääsee suoraan käsiksi sekä _Tetromino_ että _Piece_ luokkaan.
+
+Luokat [Tetromino](https://github.com/idaliisa/otm-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Tetromino.java) ja [Piece](https://github.com/idaliisa/otm-harjoitustyo/blob/master/Tetris/src/main/java/tetris/domain/Piece.java) kuvaavat pelin kannalta oleellisia yksiköitä. _Tetromino_ on abstrakti luokka, josta on toteutettu perimällä seitsemän erimuotoista tetrominoa. _Tetrominot_ on toteutettu luokan _Piece_ avulla. _GameBoard_ pääsee suoraan käsiksi sekä _Tetromino_ että _Piece_ luokkaan.
+
 
 Sovelluksen luokkakaavio, ilman käyttöliittymää, on seuraava:
 
