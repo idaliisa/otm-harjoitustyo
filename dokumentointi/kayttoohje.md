@@ -1,5 +1,5 @@
 # Käyttöohje
-Lattaa tiedosto [Tetris.jar](https://github.com/idaliisa/otm-harjoitustyo/releases)
+Lattaa tiedosto [Tetris.jar](https://github.com/idaliisa/otm-harjoitustyo/releases/tag/loppupalautus)
 ## Sovelluksen käynnistys
 Sovellus käynnistetään suoritushakemistossa komennolla
 ```

@@ -2,12 +2,12 @@
 
 ## Rakenne
 Ohjelman pakkausrakenne on seuraava:
-<img src= "https://github.com/idaliisa/otm-harjoitustyo/blob/master/dokumentointi/kuvat/pakkauskaavio.png">
+<img src= "https://github.com/idaliisa/otm-harjoitustyo/blob/master/dokumentointi/kuvat/pakkauskaavio.png" width="800">
 - _tetris.ui_: vastaa käyttöliittymästä
- -_tetris.ui.contoller: FXML:n toteutus
+- _tetris.ui.contoller_: FXML:n toteutus
 - _tetris.logics_: vastaa sovelluslogiikasta
- -_tetris.logics.game_: erityisesti pelin toteutus
- -_tetris.logics.user: erityisesti käyttäjän toteutus
+-_tetris.logics.game_: erityisesti pelin toteutus
+-_tetris.logics.user_: erityisesti käyttäjän toteutus
 - _tetris.dao_: vastaa tietojen tallennuksesta
 
 ## Käyttöliittymä
@@ -46,10 +46,12 @@ Sovellus tallettaa käyttäjätiedot _users.db_-nimiseen SqLite-tietokantaan. Ti
 
 Seuraavaksi muutaman toiminnallisuuden kuvaus.
 
-#### käyttäjän kirjautuminen
+#### Käyttäjän kirjautuminen
 Kirjautumisnäkymässä käyttäjä kirjoittaa syötekenttään nimen ja painaa _Login_. Tällöin tapahtumankäsittelijä kutsuu käyttöliittymän _LoginAndNewUserController_-oliosta _handleLogin_-metodin ja sen sisältä sovelluslogiikan _TetrisService_-olion metodin _login_, jonka parametrina on kirjoitettu käyttäjätunnus. Jos _TetrisService_:lle parametrina annettun _UserDbDao-olion_ _findByUsername_-metodi löytää tietokannasta kyseisisen käyttäjätunnuksen, silloin _LoginAndNewUserController_-olio asettaa näkymäksi peli-/pelinaloitusnäkymän. 
 
-Seuraavaksi eräs sekvenssikaavio, jolla kuvataan sovelluksen toimintalogiikkaa: Tetrominon liikuttaminen vasemmalle kun tetromino ei törmää reunaan tai palikkaan ja voi liikkua vapaasti vasemmalle.
+#### Tetrominon ohjaaminen
+Seuraavassa kuvassa näytetään tetrominon liikuttaminen vasemmalle kun tetromino ei törmää reunaan tai palikkaan.
+
 <img src= "https://github.com/idaliisa/otm-harjoitustyo/blob/master/dokumentointi/kuvat/Sekvenssikaavio_liikuVasemmalle.png" width="800">
 
 ## Ohjelman heikkoudet

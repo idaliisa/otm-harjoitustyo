@@ -25,4 +25,5 @@ Sovelluksella on vain yksi käyttäjärooli eli pelaaja.
 - Kirjautuminen vaatii salasanan.
 - Käyttäjä voi kirjautua järjestelmästä ulos.
 - Käyttäjä voi itse määritellä näppäimet, joilla peliä pelataan.
+- Käyttäjälle ilmoitetaan gameoverista
 

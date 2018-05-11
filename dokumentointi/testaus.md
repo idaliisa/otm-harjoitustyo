@@ -23,7 +23,7 @@ Järjestelmätestaus on suoritettu manuaalisesti.
 
 ### Asennus ja konfigurointi
 
-Sovellus on haettu [käyttöohjeen](https://github.com/idaliisa/otm-harjoitustyo/blob/master/dokumentointi/kayttoohje.md) mukaisesti ja testattu MacOS-ympäristössä. Testaus on suoritettu tilanteessa, jossa käyttäjiä ei vielä ole olemassa.
+Sovellus on haettu [käyttöohjeen](https://github.com/idaliisa/otm-harjoitustyo/blob/master/dokumentointi/kayttoohje.md) mukaisesti ja testattu MacOS-ympäristössä. Testaus on suoritettu sekä tilanteessa, jossa käyttäjiä ei vielä ole olemassa että tilanteessa kun käyttäjiä on jo olemassa.
 
 ### Toiminnallisuudet
 

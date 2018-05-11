@@ -5,8 +5,10 @@ Tässä desktop-sovelluksessa kirjautuneet käyttäjät voivat pelata tetristä.
 #### [Arkkitehtuuri](https://github.com/idaliisa/otm-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
 #### [Käyttöohje](https://github.com/idaliisa/otm-harjoitustyo/blob/master/dokumentointi/kayttoohje.md)
 #### [Työaikakirjanpito](https://github.com/idaliisa/otm-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
+#### [Testaus](https://github.com/idaliisa/otm-harjoitustyo/blob/master/dokumentointi/testaus.md)
 ## Releaset
-#### [Viikko 6](https://github.com/idaliisa/otm-harjoitustyo/releases)
+#### [Loppupalautus](https://github.com/idaliisa/otm-harjoitustyo/releases/tag/loppupalautus)
+#### [Viikko 6](https://github.com/idaliisa/otm-harjoitustyo/releases/tag/viikko6)
 ## Komentorivitoiminnot
 ### Testaus
 Testien suoritus komennolla 
