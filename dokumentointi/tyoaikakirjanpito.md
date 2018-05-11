@@ -18,4 +18,9 @@
 | 28.4  | 1             | käyttöliittymän päivitys, testaus |
 | 29.4  | 5             | gameover toimii, jar-tidoston generointi toimii, testaus, refaktorointi |
 | 1.5   | 5             | javadoc, arkkitehruuri, käyttöohje |
-| yht   | 65            |   |
+| 7.5   | 4             | tietokannan käyttöönotto |
+| 8.5   | 2             | tietokannan testaua |
+| 9.5   | 2.5           | käyttöliittymän toteutus fxml:llä |
+| 10.5  | 10            | fxml, refaktorointi, testaus |
+| 11.5  | 6.5           | arkkitektuuri-,testaus-, käyttöohje- ja vaativuusmäärittelydokumentaatio, javadoc, release, testaus |
+| yht   | 80            |   |

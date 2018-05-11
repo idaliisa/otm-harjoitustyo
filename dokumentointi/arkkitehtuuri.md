@@ -59,9 +59,13 @@ Seuraavassa kuvassa näytetään tetrominon liikuttaminen vasemmalle kun tetromi
 ### Dao
 Tietokanta-tiedosto on kovakoodattu koodiin. Sen voisi määrittää konfiguraatiotiedostossa.
 
+_UserDbDao_:n osia voisi toteuttaa luokassa _Database_. Nyt esimerkiksi tietokantayhteyden ottaminen toistuu jokaisessa metodissa.
+
 ### Sovelluslogiikka
 _TetrisService_-luokassa voisi toteuttaa kaikki ne metodit, joita käyttöliittymä tarvitsee. Nyt käyttöliittymä joutuu käyttämään _TetrisService_:n oliomuuuttujana määritellyn _Game_-olion metodeita.
 
 _Game_-luokan moveTetromino-metodien toimivuus törmäystilanteissa on toteutettu toisilleen vastakkaisten liikkeiden avulla. Tämä kannattaisi korjata muuttamalla _Tetromino_-luokan hit-metodeita.
 
 _Piece_ luokan metodit _hit(Piece piece)_ ja _equals(Object object)_ ovat toiminnalisuudeltaan lähes samat, joten ensimmäisen voisi korvata jälkimmäisellä.
+
+Luokilla on paljon oliomuuttujia, joista osa on turhaan julkisia.

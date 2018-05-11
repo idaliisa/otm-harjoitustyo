@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.*;
 
 /**
- * Sets up 
+ * Describes Database
  * 
  */
 public class Database {

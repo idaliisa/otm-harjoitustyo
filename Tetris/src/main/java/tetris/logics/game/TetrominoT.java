@@ -1,7 +1,10 @@
 
 package tetris.logics.game;
 
-
+/**
+ * Sets Tetromino with shape of T
+ * 
+ */
 public class TetrominoT extends Tetromino {
     
 
@@ -20,6 +23,9 @@ public class TetrominoT extends Tetromino {
         pieces.add(fourth);        
     }
     
+    /**
+     * Sets tetromino's orientation 90 degrees cloclwise
+     */
     public void rotate() {
         if (this.direction == 1) {
             setTetromino(0, -1, 0, 1, -1, 0);

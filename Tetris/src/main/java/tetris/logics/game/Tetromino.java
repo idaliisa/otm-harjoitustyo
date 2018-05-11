@@ -10,15 +10,38 @@ import java.util.List;
  * @author mikko
  */
 public abstract class Tetromino {
-    
+    /**
+     * Reference point at X-coordinate when Tetromino is created
+     */
     public int initialX;
+    /**
+     * Reference point at Y-coordinate when Tetromino is created
+     */
     public int initialY;
+    /**
+     * Each tetromino consists of four Piece objects that are stored in this list
+     */
     public List<Piece> pieces;
     
+    /**
+     * One of four pieces that buid Tetromino
+     */
     public Piece first;
+    /**
+     * One of four pieces that buid Tetromino
+     */
     public Piece second;
+    /**
+     * One of four pieces that buid Tetromino
+     */
     public Piece third;
+    /**
+     * One of four pieces that buid Tetromino
+     */
     public Piece fourth;
+    /**
+     * Variable that facilitate to rotate Tetromino. It knows the orientation of Tetromino.
+     */
     public int direction;
     
 
@@ -165,7 +188,7 @@ public abstract class Tetromino {
     }
     
     /**
-     * This abstact method rotates the tetromino
+     * This astact method sets tetromino's orientation 90 degrees cloclwise
      */
     abstract void rotate();
     

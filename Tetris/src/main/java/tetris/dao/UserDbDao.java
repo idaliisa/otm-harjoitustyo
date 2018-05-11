@@ -10,6 +10,10 @@ import java.util.List;
 import tetris.logics.user.User;
 
 
+/**
+ * Accesses user data. Connects database that has one table called User. 
+ * The table has two columns: primary key and username.
+ */
 public class UserDbDao implements UserDao {
     
     private Database database;
@@ -36,7 +40,10 @@ public class UserDbDao implements UserDao {
     }
     
     
-    
+    /**
+     * Finds all the users from database
+     * @return List of Users
+     */
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
@@ -59,7 +66,11 @@ public class UserDbDao implements UserDao {
     }
 
     
-    
+    /**
+     * Inserts a new user into database. Primary key is generated automatically.
+     * Therefore only username is inserted by program.
+     * @param user User to be created
+     */
     @Override
     public void createUser(User user) {
         
@@ -77,7 +88,11 @@ public class UserDbDao implements UserDao {
     }
 
     
-    
+    /**
+     * Finds user from database
+     * @param username Username by which User is searched
+     * @return User
+     */
     @Override
     public User findByUsername(String username) {
         try {
